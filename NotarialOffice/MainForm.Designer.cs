@@ -29,6 +29,7 @@ namespace NotarialOffice
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.headerPanel = new System.Windows.Forms.Panel();
             this.logoLabel = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@ namespace NotarialOffice
             this.goToInfo = new FontAwesome.Sharp.IconButton();
             this.mainLogo = new System.Windows.Forms.PictureBox();
             this.formPanel = new System.Windows.Forms.Panel();
+            this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.headerPanel.SuspendLayout();
             this.logInPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
@@ -145,6 +147,7 @@ namespace NotarialOffice
             this.goToLogOut.Text = "ВЫЙТИ";
             this.goToLogOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToLogOut.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToLogOut, "Выйти из аккаунта");
             this.goToLogOut.UseVisualStyleBackColor = true;
             this.goToLogOut.Click += new System.EventHandler(this.goToLogOut_Click);
             // 
@@ -169,6 +172,7 @@ namespace NotarialOffice
             this.goToLogIn.Text = "Войти";
             this.goToLogIn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToLogIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToLogIn, "Перейти на страницу авторизации");
             this.goToLogIn.UseVisualStyleBackColor = true;
             this.goToLogIn.Click += new System.EventHandler(this.goToLogIn_Click);
             // 
@@ -191,6 +195,7 @@ namespace NotarialOffice
             this.goToMaximizedApp.Size = new System.Drawing.Size(60, 50);
             this.goToMaximizedApp.TabIndex = 26;
             this.goToMaximizedApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToMaximizedApp, "Свернуть приложение");
             this.goToMaximizedApp.UseVisualStyleBackColor = true;
             this.goToMaximizedApp.Click += new System.EventHandler(this.goToMaximizedApp_Click);
             // 
@@ -213,6 +218,7 @@ namespace NotarialOffice
             this.goToExitApp.Size = new System.Drawing.Size(60, 50);
             this.goToExitApp.TabIndex = 24;
             this.goToExitApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToExitApp, "Выйти из приложения");
             this.goToExitApp.UseVisualStyleBackColor = true;
             this.goToExitApp.Click += new System.EventHandler(this.goToExitApp_Click);
             // 
@@ -256,6 +262,7 @@ namespace NotarialOffice
             this.goToSettings.Text = "Настройки";
             this.goToSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToSettings, "Открыть меню настроек приложения");
             this.goToSettings.UseVisualStyleBackColor = true;
             // 
             // goToEmployees
@@ -279,6 +286,7 @@ namespace NotarialOffice
             this.goToEmployees.Text = "Сотрудники";
             this.goToEmployees.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToEmployees.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToEmployees, "Открыть страницу сотрудников");
             this.goToEmployees.UseVisualStyleBackColor = true;
             this.goToEmployees.Visible = false;
             // 
@@ -303,6 +311,7 @@ namespace NotarialOffice
             this.goToCustomers.Text = "Клиенты";
             this.goToCustomers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToCustomers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToCustomers, "Открыть страницу клиентов");
             this.goToCustomers.UseVisualStyleBackColor = true;
             this.goToCustomers.Visible = false;
             // 
@@ -327,6 +336,7 @@ namespace NotarialOffice
             this.goToMyDocuments.Text = "Мои документы";
             this.goToMyDocuments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToMyDocuments.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToMyDocuments, "Открыть страницу моих документов");
             this.goToMyDocuments.UseVisualStyleBackColor = true;
             this.goToMyDocuments.Visible = false;
             // 
@@ -351,6 +361,7 @@ namespace NotarialOffice
             this.goToDocuments.Text = "Документы";
             this.goToDocuments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToDocuments.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToDocuments, "Открыть страницу документов для их заказа");
             this.goToDocuments.UseVisualStyleBackColor = true;
             // 
             // goToInfo
@@ -374,6 +385,7 @@ namespace NotarialOffice
             this.goToInfo.Text = "Информация";
             this.goToInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToInfo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToInfo, "Открыть страницу основной информации");
             this.goToInfo.UseVisualStyleBackColor = true;
             // 
             // mainLogo
@@ -387,6 +399,7 @@ namespace NotarialOffice
             this.mainLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.mainLogo.TabIndex = 2;
             this.mainLogo.TabStop = false;
+            this.mainToolTip.SetToolTip(this.mainLogo, "Открыть страницу основной информации");
             // 
             // formPanel
             // 
@@ -442,6 +455,7 @@ namespace NotarialOffice
         private FontAwesome.Sharp.IconButton goToInfo;
         private System.Windows.Forms.PictureBox mainLogo;
         private System.Windows.Forms.Panel formPanel;
+        private System.Windows.Forms.ToolTip mainToolTip;
     }
 }
 

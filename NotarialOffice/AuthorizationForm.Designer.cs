@@ -86,6 +86,7 @@ namespace NotarialOffice
             this.goToBack.Size = new System.Drawing.Size(60, 50);
             this.goToBack.TabIndex = 7;
             this.goToBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToBack, "Перейти на основную страницу");
             this.goToBack.UseVisualStyleBackColor = true;
             this.goToBack.Click += new System.EventHandler(this.goToBack_Click);
             // 
@@ -121,6 +122,7 @@ namespace NotarialOffice
             this.goToMaximizedApp.Size = new System.Drawing.Size(60, 50);
             this.goToMaximizedApp.TabIndex = 8;
             this.goToMaximizedApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToMaximizedApp, "Свернуть приложение");
             this.goToMaximizedApp.UseVisualStyleBackColor = true;
             this.goToMaximizedApp.Click += new System.EventHandler(this.goToMaximizedApp_Click);
             // 
@@ -143,6 +145,7 @@ namespace NotarialOffice
             this.goToExitApp.Size = new System.Drawing.Size(60, 50);
             this.goToExitApp.TabIndex = 9;
             this.goToExitApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToExitApp, "Выйти из приложения");
             this.goToExitApp.UseVisualStyleBackColor = true;
             this.goToExitApp.Click += new System.EventHandler(this.goToExitApp_Click);
             // 
@@ -177,6 +180,7 @@ namespace NotarialOffice
             this.goToCreateAccount.TabIndex = 4;
             this.goToCreateAccount.TabStop = true;
             this.goToCreateAccount.Text = "Нет аккаунта? Создайте!";
+            this.mainToolTip.SetToolTip(this.goToCreateAccount, "Создать новый аккаунт клиента");
             this.goToCreateAccount.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.goToCreateAccount_LinkClicked);
             // 
             // goToCheckPassword
@@ -199,6 +203,7 @@ namespace NotarialOffice
             this.goToCheckPassword.TabIndex = 3;
             this.goToCheckPassword.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToCheckPassword.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToCheckPassword, "Временно показать пароль");
             this.goToCheckPassword.UseVisualStyleBackColor = false;
             this.goToCheckPassword.Click += new System.EventHandler(this.goToCheckPassword_Click);
             // 
@@ -223,6 +228,7 @@ namespace NotarialOffice
             this.goToClear.Text = "Очистить";
             this.goToClear.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToClear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToClear, "Очистить содержимое полей");
             this.goToClear.UseVisualStyleBackColor = false;
             this.goToClear.Click += new System.EventHandler(this.goToClear_Click);
             // 
@@ -257,6 +263,7 @@ namespace NotarialOffice
             this.goToLogIn.Text = "Авторизоваться";
             this.goToLogIn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToLogIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToLogIn, "Авторизоваться в системе");
             this.goToLogIn.UseVisualStyleBackColor = false;
             this.goToLogIn.Click += new System.EventHandler(this.goToLogIn_Click);
             // 
@@ -280,6 +287,7 @@ namespace NotarialOffice
             this.passwordBox.Size = new System.Drawing.Size(228, 35);
             this.passwordBox.TabIndex = 2;
             this.passwordBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mainToolTip.SetToolTip(this.passwordBox, "Поле для ввода пароля");
             this.passwordBox.UseSystemPasswordChar = true;
             this.passwordBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressValidate);
             // 
@@ -304,6 +312,7 @@ namespace NotarialOffice
             this.loginBox.Size = new System.Drawing.Size(228, 35);
             this.loginBox.TabIndex = 1;
             this.loginBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mainToolTip.SetToolTip(this.loginBox, "Поле для ввода номера телефона или электронной почты");
             this.loginBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressValidate);
             // 
             // AuthorizationForm

@@ -147,7 +147,7 @@ namespace NotarialOffice
                             SuccessfulAuthorization(data, "customer");
                     }
                     else
-                        MessageBox.Show("Для авторизации были введены некорректные данные логина", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Для авторизации были введены некорректные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch
                 {
