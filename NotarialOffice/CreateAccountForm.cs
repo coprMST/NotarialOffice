@@ -129,7 +129,7 @@ namespace NotarialOffice
                 MessageBox.Show("Для регистрации введите корректно номер телефона", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (String.IsNullOrEmpty(fio))
                 MessageBox.Show("Для регистрации введите фамилию, имя и отчество (при наличии)", "Примечание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else if (fio.Split(new char[] { ' ' }).Length <= 1 || fio.Length < 3)
+            else if (fio.Split(new char[] { ' ' }).Length < 2 || fio.Split(new char[] { ' ' }).Length > 3 || fio.Length < 3)
                 MessageBox.Show("Для регистрации введите корректно фамилию, имя и отчество (при наличии)", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (String.IsNullOrEmpty(dob))
                 MessageBox.Show("Для регистрации введите дату рождения", "Примечание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -143,11 +143,47 @@ namespace NotarialOffice
                 MessageBox.Show("Для регистрации введите одинаковые пароли в соответствующих полях", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                MessageBox.Show("aaaaaaaaaaaaaaaaaaaaaaaaa", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string[] temp_fio = fio.Split(new char[] { ' ' });
+                string lastName = temp_fio[0];
+                string firstName = temp_fio[1];
+                string middleName = "NULL";
+                if (temp_fio.Length == 3)
+                    middleName = temp_fio[2];
 
+                try
+                {
+                    DataTable dataTable = MainForm.GetData($"exec [dbo].[CheckPhoneAndEmail] '{phone}', '{email}'");
+
+                    if (dataTable.Rows[0][0].ToString() == "True")
+                    {
+                        MessageBox.Show("Вы ввели существующий номер телефона и/или электронную почту", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        dataTable = MainForm.GetData($"exec [dbo].[AddNewCustomer] {lastName}, {firstName}, {middleName}, {dob}, {phone}, {email}, {firstPassword}");
+                        MessageBox.Show("Вы были успешно зарегистрированы\nСейчас вы перенаправитесь на главную страницу", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        MainForm.AccountID = dataTable.Rows[0][0].ToString();
+                        MainForm.CustomerID = dataTable.Rows[1][0].ToString();
+                        MainForm.UserName = lastName + " " + firstName.Substring(0, 1) + "." + middleName.Substring(0, 1) + ".";
+
+                        Form mainForm = new MainForm();
+                        this.Close();
+                        mainForm.Show();
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Зарегистрироваться не получилось\nПопробуйте снова", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+        }
 
-
+        private void goToAuthorization_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Form authorizationForm = new AuthorizationForm();
+            this.Close();
+            authorizationForm.Show();
         }
     }
 }

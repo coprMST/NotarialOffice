@@ -114,10 +114,10 @@ namespace NotarialOffice
                 {
                     if (Regex.IsMatch(login, ".+[@].+[.].+"))
                     {
-                        data = MainForm.GetData($"select* from [dbo].[GetCustomer](null, '{login}', '{password}')");
+                        data = MainForm.GetData($"exec [dbo].[GetCustomer] null, {login}, {password}");
                         if (data.Rows.Count == 0)
                         {
-                            data = MainForm.GetData($"select* from [dbo].[GetEmployee](null, '{login}', '{password}')");
+                            data = MainForm.GetData($"exec [dbo].[GetEmployee] null, {login}, {password}");
                             if (data.Rows.Count == 0)
                             {
                                 MessageBox.Show("Для авторизации были введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -131,10 +131,10 @@ namespace NotarialOffice
                     }
                     else if (long.TryParse(login, out test))
                     {
-                        data = MainForm.GetData($"select* from [dbo].[GetCustomer]('{login}', null, '{password}')");
+                        data = MainForm.GetData($"exec [dbo].[GetCustomer] {login}, null, {password}");
                         if (data.Rows.Count == 0)
                         {
-                            data = MainForm.GetData($"select* from [dbo].[GetEmployee]('{login}', null, '{password}')");
+                            data = MainForm.GetData($"exec [dbo].[GetEmployee] {login}, null, {password}");
                             if (data.Rows.Count == 0)
                             {
                                 MessageBox.Show("Для авторизации были введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);

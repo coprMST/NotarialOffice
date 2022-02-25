@@ -10,13 +10,6 @@ begin
 return case when datediff(day, dateadd(year, @age, @dateOfBith), sysdatetime()) > 0 then 1 else 0 end
 end
 go
-select HASHBYTES('SHA2_512', 'aboba')
-
-insert into Accounts (Password) values (HASHBYTES('SHA2_512', 'aboba'))
-
-
-
-select AccountID from Accounts where Password = HASHBYTES('SHA2_512', 'aboba')
 
 create table [dbo].[Positions] (
 	[PositionID] integer primary key identity ,
@@ -57,35 +50,106 @@ create table [dbo].[Customers] (
 go
 
 
-
-
-
-
-insert into Accounts(PhoneNumber, Email, Password)
-values
-('33', 'abobus@mail.ru', HASHBYTES('SHA2_512', 'abobus'))
+create trigger Un1
+on [dbo].[Employees]
+for insert, update
+as 
+	if exists (select AccountID from Customers where AccountID = (select AccountID from inserted))
+	begin
+	rollback transaction
+	end
 go
 
-create function [dbo].[GetCustomer](@phoneNumber numeric(38), @email varchar(800), @password varchar(64))
-returns table
+create trigger Un2
+on [dbo].[Customers]
+for insert, update
+as 
+	if exists (select AccountID from Employees where AccountID = (select AccountID from inserted))
+	begin
+	rollback transaction
+	end
+go
+
+
+
+create procedure [dbo].[GetCustomer](@phoneNumber numeric(38), 
+									 @email varchar(800), 
+									 @password varchar(64))
 as
-	return
 	select A.AccountID, C.CustomerID, C.LastName, C.FirstName, C.MiddleName
 	from Accounts A inner join Customers C on A.AccountID = C.AccountID 
 	where (PhoneNumber = @phoneNumber or Email = @email) and Password = HASHBYTES('SHA2_512', @password)
 go
-select* from [dbo].[GetCustomer]('88005553535', null, 'abobus')
 
+exec [dbo].[GetCustomer] 3333333, null, 22222
+go
 
-create function [dbo].[GetEmployee](@phoneNumber numeric(38), @email varchar(800), @password varchar(64))
-returns table
+create procedure [dbo].[GetEmployee](@phoneNumber numeric(38), 
+									 @email varchar(800), 
+									 @password varchar(64))
 as
-	return
 	select A.AccountID, E.EmployeeID, E.LastName, E.FirstName, E.MiddleName
 	from Accounts A inner join Employees E on A.AccountID = E.AccountID 
 	where (PhoneNumber = @phoneNumber or Email = @email) and Password = HASHBYTES('SHA2_512', @password)
 go
-select* from [dbo].[GetEmployee]('8800555335', null, 'abobus')
+
+--exec [dbo].[GetEmployee] '8800555335', null, 'abobus'
+--go
+
+create procedure [dbo].[AddNewCustomer] (@lastName varchar(800), 
+										 @firstName varchar(800), 
+										 @middleName varchar(800), 
+										 @dob date, 
+										 @phone numeric(38), 
+										 @email varchar(800), 
+										 @password varchar(64))
+as
+	declare @IDs table(ID uniqueidentifier)
+	
+	if not exists (select PhoneNumber, Email from Accounts where PhoneNumber = @phone or Email = @email)
+	begin
+		insert into [dbo].[Accounts](PhoneNumber, Email, Password)
+		output inserted.AccountID into @IDs
+		values (@phone, @email, HASHBYTES('SHA2_512', @password))
+		
+		insert into [dbo].[Customers](AccountID, LastName, FirstName, MiddleName, DateOfBith)
+		output inserted.CustomerID into @IDs
+		values ((select top 1 ID from @IDs), @lastName, @firstName, @middleName, @dob)
+
+		select ID from @IDs
+	end
+go
+
+--exec [dbo].[AddNewCustomer] 'wda2wd', 'awd2a2wd', 'awda2wd', '1.1.2000', '3333333', '233333', '22222' 
+--go
+
+
+create procedure [dbo].[CheckPhoneAndEmail] (@phone numeric(38), 
+											 @email varchar(800))
+as
+	declare @boolean table(bool bit)
+	declare @check bit
+	
+	set @check = case when exists (select PhoneNumber, Email from Accounts where PhoneNumber = @phone or Email = @email) then 1 else 0 end
+	
+	if (@check = 1)
+	begin
+		insert @boolean values ('1')
+	end
+	else
+	begin
+		insert @boolean values ('0')
+	end
+
+	select* from @boolean
+go
+
+--exec [dbo].[CheckPhoneAndEmail] '88005553535', 'b3ashkir@mail.ru' 
+--go
+
+
+
+
 
 
 

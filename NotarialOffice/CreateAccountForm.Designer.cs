@@ -53,6 +53,7 @@ namespace NotarialOffice
             this.goToExitApp = new FontAwesome.Sharp.IconButton();
             this.headerPanel = new System.Windows.Forms.Panel();
             this.logoLabel = new System.Windows.Forms.Label();
+            this.goToAuthorization = new System.Windows.Forms.LinkLabel();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.headerPanel.SuspendLayout();
@@ -61,6 +62,7 @@ namespace NotarialOffice
             // mainPanel
             // 
             this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(200)))), ((int)(((byte)(172)))));
+            this.mainPanel.Controls.Add(this.goToAuthorization);
             this.mainPanel.Controls.Add(this.label7);
             this.mainPanel.Controls.Add(this.secondPasswordBox);
             this.mainPanel.Controls.Add(this.label3);
@@ -103,7 +105,7 @@ namespace NotarialOffice
             this.secondPasswordBox.MaxLength = 64;
             this.secondPasswordBox.Name = "secondPasswordBox";
             this.secondPasswordBox.Size = new System.Drawing.Size(228, 35);
-            this.secondPasswordBox.TabIndex = 36;
+            this.secondPasswordBox.TabIndex = 6;
             this.secondPasswordBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mainToolTip.SetToolTip(this.secondPasswordBox, "Поле для ввода пароля\r\n");
             this.secondPasswordBox.UseSystemPasswordChar = true;
@@ -135,11 +137,11 @@ namespace NotarialOffice
             // 
             this.firstPasswordBox.BackColor = System.Drawing.SystemColors.Window;
             this.firstPasswordBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
-            this.firstPasswordBox.Location = new System.Drawing.Point(186, 372);
+            this.firstPasswordBox.Location = new System.Drawing.Point(184, 372);
             this.firstPasswordBox.MaxLength = 64;
             this.firstPasswordBox.Name = "firstPasswordBox";
             this.firstPasswordBox.Size = new System.Drawing.Size(228, 35);
-            this.firstPasswordBox.TabIndex = 33;
+            this.firstPasswordBox.TabIndex = 5;
             this.firstPasswordBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mainToolTip.SetToolTip(this.firstPasswordBox, "Поле для ввода пароля");
             this.firstPasswordBox.UseSystemPasswordChar = true;
@@ -175,7 +177,7 @@ namespace NotarialOffice
             this.fioBox.MaxLength = 2402;
             this.fioBox.Name = "fioBox";
             this.fioBox.Size = new System.Drawing.Size(228, 35);
-            this.fioBox.TabIndex = 29;
+            this.fioBox.TabIndex = 3;
             this.fioBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mainToolTip.SetToolTip(this.fioBox, "Поле для ввода фамилии, имени и отчества");
             this.fioBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.fioBox_KeyPress);
@@ -187,7 +189,7 @@ namespace NotarialOffice
             this.dobBox.Mask = "00/00/0000";
             this.dobBox.Name = "dobBox";
             this.dobBox.Size = new System.Drawing.Size(226, 35);
-            this.dobBox.TabIndex = 28;
+            this.dobBox.TabIndex = 4;
             this.dobBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mainToolTip.SetToolTip(this.dobBox, "Поле для ввода даты рождения");
             this.dobBox.ValidatingType = typeof(System.DateTime);
@@ -200,7 +202,7 @@ namespace NotarialOffice
             this.emailBox.MaxLength = 800;
             this.emailBox.Name = "emailBox";
             this.emailBox.Size = new System.Drawing.Size(228, 35);
-            this.emailBox.TabIndex = 26;
+            this.emailBox.TabIndex = 1;
             this.emailBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mainToolTip.SetToolTip(this.emailBox, "Поле для ввода электронной почты");
             this.emailBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.emailBox_KeyPress);
@@ -222,7 +224,7 @@ namespace NotarialOffice
             this.goToCheckPassword.Name = "goToCheckPassword";
             this.goToCheckPassword.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.goToCheckPassword.Size = new System.Drawing.Size(41, 35);
-            this.goToCheckPassword.TabIndex = 3;
+            this.goToCheckPassword.TabIndex = 7;
             this.goToCheckPassword.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToCheckPassword.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.mainToolTip.SetToolTip(this.goToCheckPassword, "Временно показать пароли");
@@ -252,11 +254,11 @@ namespace NotarialOffice
             this.goToRegistration.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToRegistration.IconSize = 32;
             this.goToRegistration.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToRegistration.Location = new System.Drawing.Point(156, 519);
+            this.goToRegistration.Location = new System.Drawing.Point(156, 510);
             this.goToRegistration.Name = "goToRegistration";
             this.goToRegistration.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.goToRegistration.Size = new System.Drawing.Size(290, 60);
-            this.goToRegistration.TabIndex = 5;
+            this.goToRegistration.TabIndex = 8;
             this.goToRegistration.Text = "Зарегистрироваться";
             this.goToRegistration.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToRegistration.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -283,7 +285,7 @@ namespace NotarialOffice
             this.phoneBox.MaxLength = 38;
             this.phoneBox.Name = "phoneBox";
             this.phoneBox.Size = new System.Drawing.Size(228, 35);
-            this.phoneBox.TabIndex = 1;
+            this.phoneBox.TabIndex = 2;
             this.phoneBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mainToolTip.SetToolTip(this.phoneBox, "Поле для ввода номера телефона");
             this.phoneBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.phoneBox_KeyPress);
@@ -305,7 +307,7 @@ namespace NotarialOffice
             this.goToBack.Name = "goToBack";
             this.goToBack.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
             this.goToBack.Size = new System.Drawing.Size(60, 50);
-            this.goToBack.TabIndex = 7;
+            this.goToBack.TabIndex = 9;
             this.goToBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.mainToolTip.SetToolTip(this.goToBack, "Перейти на страницу авторизации");
             this.goToBack.UseVisualStyleBackColor = true;
@@ -328,7 +330,7 @@ namespace NotarialOffice
             this.goToMaximizedApp.Name = "goToMaximizedApp";
             this.goToMaximizedApp.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
             this.goToMaximizedApp.Size = new System.Drawing.Size(60, 50);
-            this.goToMaximizedApp.TabIndex = 8;
+            this.goToMaximizedApp.TabIndex = 10;
             this.goToMaximizedApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.mainToolTip.SetToolTip(this.goToMaximizedApp, "Свернуть приложение");
             this.goToMaximizedApp.UseVisualStyleBackColor = true;
@@ -351,7 +353,7 @@ namespace NotarialOffice
             this.goToExitApp.Name = "goToExitApp";
             this.goToExitApp.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
             this.goToExitApp.Size = new System.Drawing.Size(60, 50);
-            this.goToExitApp.TabIndex = 9;
+            this.goToExitApp.TabIndex = 11;
             this.goToExitApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.mainToolTip.SetToolTip(this.goToExitApp, "Выйти из приложения");
             this.goToExitApp.UseVisualStyleBackColor = true;
@@ -384,6 +386,21 @@ namespace NotarialOffice
             this.logoLabel.Text = "Нотариальная контора";
             this.logoLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.headerPanel_MouseDown);
             this.logoLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.headerPanel_MouseMove);
+            // 
+            // goToAuthorization
+            // 
+            this.goToAuthorization.AutoSize = true;
+            this.goToAuthorization.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToAuthorization.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.goToAuthorization.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToAuthorization.Location = new System.Drawing.Point(189, 582);
+            this.goToAuthorization.Name = "goToAuthorization";
+            this.goToAuthorization.Size = new System.Drawing.Size(221, 21);
+            this.goToAuthorization.TabIndex = 38;
+            this.goToAuthorization.TabStop = true;
+            this.goToAuthorization.Text = "Вернуться к авторизации";
+            this.mainToolTip.SetToolTip(this.goToAuthorization, "Перейти на авторизацию");
+            this.goToAuthorization.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.goToAuthorization_LinkClicked);
             // 
             // CreateAccountForm
             // 
@@ -430,5 +447,6 @@ namespace NotarialOffice
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox fioBox;
+        private System.Windows.Forms.LinkLabel goToAuthorization;
     }
 }
