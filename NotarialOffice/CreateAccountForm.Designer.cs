@@ -32,6 +32,7 @@ namespace NotarialOffice
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateAccountForm));
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.goToAuthorization = new System.Windows.Forms.LinkLabel();
             this.label7 = new System.Windows.Forms.Label();
             this.secondPasswordBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,7 +54,6 @@ namespace NotarialOffice
             this.goToExitApp = new FontAwesome.Sharp.IconButton();
             this.headerPanel = new System.Windows.Forms.Panel();
             this.logoLabel = new System.Windows.Forms.Label();
-            this.goToAuthorization = new System.Windows.Forms.LinkLabel();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.headerPanel.SuspendLayout();
@@ -86,6 +86,21 @@ namespace NotarialOffice
             this.mainPanel.TabIndex = 14;
             this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
+            // goToAuthorization
+            // 
+            this.goToAuthorization.AutoSize = true;
+            this.goToAuthorization.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToAuthorization.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.goToAuthorization.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToAuthorization.Location = new System.Drawing.Point(189, 582);
+            this.goToAuthorization.Name = "goToAuthorization";
+            this.goToAuthorization.Size = new System.Drawing.Size(221, 21);
+            this.goToAuthorization.TabIndex = 38;
+            this.goToAuthorization.TabStop = true;
+            this.goToAuthorization.Text = "Вернуться к авторизации";
+            this.mainToolTip.SetToolTip(this.goToAuthorization, "Перейти на авторизацию");
+            this.goToAuthorization.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.goToAuthorization_LinkClicked);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -109,7 +124,7 @@ namespace NotarialOffice
             this.secondPasswordBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mainToolTip.SetToolTip(this.secondPasswordBox, "Поле для ввода пароля\r\n");
             this.secondPasswordBox.UseSystemPasswordChar = true;
-            this.secondPasswordBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.firstPasswordBox_KeyPress);
+            this.secondPasswordBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.emailBox_KeyPress);
             // 
             // label3
             // 
@@ -145,7 +160,7 @@ namespace NotarialOffice
             this.firstPasswordBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mainToolTip.SetToolTip(this.firstPasswordBox, "Поле для ввода пароля");
             this.firstPasswordBox.UseSystemPasswordChar = true;
-            this.firstPasswordBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.firstPasswordBox_KeyPress);
+            this.firstPasswordBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.emailBox_KeyPress);
             // 
             // label5
             // 
@@ -386,21 +401,6 @@ namespace NotarialOffice
             this.logoLabel.Text = "Нотариальная контора";
             this.logoLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.headerPanel_MouseDown);
             this.logoLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.headerPanel_MouseMove);
-            // 
-            // goToAuthorization
-            // 
-            this.goToAuthorization.AutoSize = true;
-            this.goToAuthorization.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
-            this.goToAuthorization.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.goToAuthorization.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
-            this.goToAuthorization.Location = new System.Drawing.Point(189, 582);
-            this.goToAuthorization.Name = "goToAuthorization";
-            this.goToAuthorization.Size = new System.Drawing.Size(221, 21);
-            this.goToAuthorization.TabIndex = 38;
-            this.goToAuthorization.TabStop = true;
-            this.goToAuthorization.Text = "Вернуться к авторизации";
-            this.mainToolTip.SetToolTip(this.goToAuthorization, "Перейти на авторизацию");
-            this.goToAuthorization.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.goToAuthorization_LinkClicked);
             // 
             // CreateAccountForm
             // 

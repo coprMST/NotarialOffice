@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NotarialOffice
@@ -114,52 +110,54 @@ namespace NotarialOffice
                 {
                     if (Regex.IsMatch(login, ".+[@].+[.].+"))
                     {
-                        data = MainForm.GetData($"exec [dbo].[GetCustomer] null, {login}, {password}");
+                        data = MainForm.GetData($"exec [dbo].[GetCustomer] null, '{login}', '{password}'");
                         if (data.Rows.Count == 0)
                         {
-                            data = MainForm.GetData($"exec [dbo].[GetEmployee] null, {login}, {password}");
+                            data = MainForm.GetData($"exec [dbo].[GetEmployee] null, '{login}', '{password}'");
                             if (data.Rows.Count == 0)
                             {
                                 MessageBox.Show("Для авторизации были введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 passwordBox.Text = string.Empty;
                             } 
                             else 
-                                SuccessfulAuthorization(data, "employee");
+                                SuccessfulAuthorization("employee");
                         }
                         else 
-                            SuccessfulAuthorization(data, "customer");
+                            SuccessfulAuthorization("customer");
                     }
                     else if (long.TryParse(login, out test))
                     {
-                        data = MainForm.GetData($"exec [dbo].[GetCustomer] {login}, null, {password}");
+                        data = MainForm.GetData($"exec [dbo].[GetCustomer] '{login}', null, '{password}'");
                         if (data.Rows.Count == 0)
                         {
-                            data = MainForm.GetData($"exec [dbo].[GetEmployee] {login}, null, {password}");
+                            data = MainForm.GetData($"exec [dbo].[GetEmployee] '{login}', null, '{password}'");
                             if (data.Rows.Count == 0)
                             {
                                 MessageBox.Show("Для авторизации были введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 passwordBox.Text = string.Empty;
                             }
                             else
-                                SuccessfulAuthorization(data, "employee");
+                                SuccessfulAuthorization("employee");
                         }
                         else
-                            SuccessfulAuthorization(data, "customer");
+                            SuccessfulAuthorization("customer");
                     }
                     else
-                        MessageBox.Show("Для авторизации были введены некорректные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch
-                {
-                    MessageBox.Show("Не удалось подключиться к базе данных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                    MessageBox.Show("Для авторизации были введены некорректные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+                catch
+            {
+                MessageBox.Show("Не удалось установить соединение с базой данных\nПопробуйте позже или восстановите резервную копию необходимой базы данных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-            void SuccessfulAuthorization(DataTable dataTable, string user)
+            void SuccessfulAuthorization(string user)
             {
                 MainForm.AccountID = data.Rows[0][0].ToString();
-                MainForm.UserName = data.Rows[0][2].ToString() + " " + data.Rows[0][3].ToString().Substring(0, 1) + "." + data.Rows[0][4].ToString().Substring(0, 1) + ".";
-
+                MainForm.UserName = data.Rows[0][2].ToString() + " " + data.Rows[0][3].ToString().Substring(0, 1) + ".";
+                if (data.Rows[0][4] != DBNull.Value)
+                    MainForm.UserName += data.Rows[0][4].ToString().Substring(0, 1) + ".";
+                
                 if (user == "customer")
                 {
                     MainForm.CustomerID = data.Rows[0][1].ToString();
@@ -175,8 +173,8 @@ namespace NotarialOffice
 
         private void KeyPressValidate(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Space) 
-                e.Handled = true;
+            if ((e.KeyChar >= 'A' && e.KeyChar <= 'Z') || (e.KeyChar >= 1 && e.KeyChar <= 31) || (e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= '0' && e.KeyChar <= '9') || (e.KeyChar >= 33 && e.KeyChar <= 38) || (e.KeyChar >= 40 && e.KeyChar <= 126)  || e.KeyChar == (char)Keys.Back) { }
+            else e.Handled = true;
         }
 
         private void goToClear_Click(object sender, EventArgs e)

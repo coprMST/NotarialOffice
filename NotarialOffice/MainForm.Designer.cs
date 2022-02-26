@@ -48,7 +48,7 @@ namespace NotarialOffice
             this.goToDocuments = new FontAwesome.Sharp.IconButton();
             this.goToInfo = new FontAwesome.Sharp.IconButton();
             this.mainLogo = new System.Windows.Forms.PictureBox();
-            this.formPanel = new System.Windows.Forms.Panel();
+            this.workPanel = new System.Windows.Forms.Panel();
             this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.headerPanel.SuspendLayout();
             this.logInPanel.SuspendLayout();
@@ -247,7 +247,7 @@ namespace NotarialOffice
             this.goToSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.goToSettings.FlatAppearance.BorderSize = 0;
             this.goToSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.goToSettings.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.goToSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
             this.goToSettings.IconChar = FontAwesome.Sharp.IconChar.Cog;
             this.goToSettings.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
@@ -264,6 +264,7 @@ namespace NotarialOffice
             this.goToSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.mainToolTip.SetToolTip(this.goToSettings, "Открыть меню настроек приложения");
             this.goToSettings.UseVisualStyleBackColor = true;
+            this.goToSettings.Click += new System.EventHandler(this.goToSettings_Click);
             // 
             // goToEmployees
             // 
@@ -271,7 +272,7 @@ namespace NotarialOffice
             this.goToEmployees.Dock = System.Windows.Forms.DockStyle.Top;
             this.goToEmployees.FlatAppearance.BorderSize = 0;
             this.goToEmployees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToEmployees.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.goToEmployees.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.goToEmployees.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
             this.goToEmployees.IconChar = FontAwesome.Sharp.IconChar.AccessibleIcon;
             this.goToEmployees.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
@@ -289,6 +290,7 @@ namespace NotarialOffice
             this.mainToolTip.SetToolTip(this.goToEmployees, "Открыть страницу сотрудников");
             this.goToEmployees.UseVisualStyleBackColor = true;
             this.goToEmployees.Visible = false;
+            this.goToEmployees.Click += new System.EventHandler(this.goToEmployees_Click);
             // 
             // goToCustomers
             // 
@@ -296,7 +298,7 @@ namespace NotarialOffice
             this.goToCustomers.Dock = System.Windows.Forms.DockStyle.Top;
             this.goToCustomers.FlatAppearance.BorderSize = 0;
             this.goToCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.goToCustomers.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.goToCustomers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
             this.goToCustomers.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
             this.goToCustomers.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
@@ -314,6 +316,7 @@ namespace NotarialOffice
             this.mainToolTip.SetToolTip(this.goToCustomers, "Открыть страницу клиентов");
             this.goToCustomers.UseVisualStyleBackColor = true;
             this.goToCustomers.Visible = false;
+            this.goToCustomers.Click += new System.EventHandler(this.goToCustomers_Click);
             // 
             // goToMyDocuments
             // 
@@ -321,7 +324,7 @@ namespace NotarialOffice
             this.goToMyDocuments.Dock = System.Windows.Forms.DockStyle.Top;
             this.goToMyDocuments.FlatAppearance.BorderSize = 0;
             this.goToMyDocuments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToMyDocuments.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.goToMyDocuments.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.goToMyDocuments.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
             this.goToMyDocuments.IconChar = FontAwesome.Sharp.IconChar.FileDownload;
             this.goToMyDocuments.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
@@ -339,6 +342,7 @@ namespace NotarialOffice
             this.mainToolTip.SetToolTip(this.goToMyDocuments, "Открыть страницу моих документов");
             this.goToMyDocuments.UseVisualStyleBackColor = true;
             this.goToMyDocuments.Visible = false;
+            this.goToMyDocuments.Click += new System.EventHandler(this.goToMyDocuments_Click);
             // 
             // goToDocuments
             // 
@@ -346,7 +350,7 @@ namespace NotarialOffice
             this.goToDocuments.Dock = System.Windows.Forms.DockStyle.Top;
             this.goToDocuments.FlatAppearance.BorderSize = 0;
             this.goToDocuments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToDocuments.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.goToDocuments.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.goToDocuments.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
             this.goToDocuments.IconChar = FontAwesome.Sharp.IconChar.FileContract;
             this.goToDocuments.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
@@ -363,6 +367,7 @@ namespace NotarialOffice
             this.goToDocuments.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.mainToolTip.SetToolTip(this.goToDocuments, "Открыть страницу документов для их заказа");
             this.goToDocuments.UseVisualStyleBackColor = true;
+            this.goToDocuments.Click += new System.EventHandler(this.goToDocuments_Click);
             // 
             // goToInfo
             // 
@@ -370,7 +375,7 @@ namespace NotarialOffice
             this.goToInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.goToInfo.FlatAppearance.BorderSize = 0;
             this.goToInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.goToInfo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.goToInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
             this.goToInfo.IconChar = FontAwesome.Sharp.IconChar.Home;
             this.goToInfo.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
@@ -387,6 +392,7 @@ namespace NotarialOffice
             this.goToInfo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.mainToolTip.SetToolTip(this.goToInfo, "Открыть страницу основной информации");
             this.goToInfo.UseVisualStyleBackColor = true;
+            this.goToInfo.Click += new System.EventHandler(this.goToInfo_Click);
             // 
             // mainLogo
             // 
@@ -400,24 +406,25 @@ namespace NotarialOffice
             this.mainLogo.TabIndex = 2;
             this.mainLogo.TabStop = false;
             this.mainToolTip.SetToolTip(this.mainLogo, "Открыть страницу основной информации");
+            this.mainLogo.Click += new System.EventHandler(this.goToInfo_Click);
             // 
-            // formPanel
+            // workPanel
             // 
-            this.formPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(200)))), ((int)(((byte)(172)))));
-            this.formPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.formPanel.Location = new System.Drawing.Point(200, 50);
-            this.formPanel.Name = "formPanel";
-            this.formPanel.Padding = new System.Windows.Forms.Padding(0, 0, 2, 2);
-            this.formPanel.Size = new System.Drawing.Size(800, 650);
-            this.formPanel.TabIndex = 12;
-            this.formPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.formPanel_Paint);
+            this.workPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(200)))), ((int)(((byte)(172)))));
+            this.workPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workPanel.Location = new System.Drawing.Point(200, 50);
+            this.workPanel.Name = "workPanel";
+            this.workPanel.Padding = new System.Windows.Forms.Padding(0, 0, 2, 2);
+            this.workPanel.Size = new System.Drawing.Size(800, 650);
+            this.workPanel.TabIndex = 12;
+            this.workPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.formPanel_Paint);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 700);
-            this.Controls.Add(this.formPanel);
+            this.Controls.Add(this.workPanel);
             this.Controls.Add(this.menuPanel);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -454,7 +461,7 @@ namespace NotarialOffice
         private FontAwesome.Sharp.IconButton goToDocuments;
         private FontAwesome.Sharp.IconButton goToInfo;
         private System.Windows.Forms.PictureBox mainLogo;
-        private System.Windows.Forms.Panel formPanel;
+        private System.Windows.Forms.Panel workPanel;
         private System.Windows.Forms.ToolTip mainToolTip;
     }
 }

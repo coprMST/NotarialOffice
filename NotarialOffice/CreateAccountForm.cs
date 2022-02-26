@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 
 namespace NotarialOffice
 {
@@ -88,25 +84,19 @@ namespace NotarialOffice
 
         private void emailBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar != (char)Keys.Space) { }
+            if ((e.KeyChar >= 'A' && e.KeyChar <= 'Z') || (e.KeyChar >= 1 && e.KeyChar <= 31) || (e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= '0' && e.KeyChar <= '9') || (e.KeyChar >= 33 && e.KeyChar <= 38) || (e.KeyChar >= 40 && e.KeyChar <= 126) || e.KeyChar == (char)Keys.Back) { }
             else e.Handled = true;
         }
 
         private void phoneBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar >= '0' && e.KeyChar <= '9') || e.KeyChar == (char)Keys.Back) { }
+            if ((e.KeyChar >= '0' && e.KeyChar <= '9') || (e.KeyChar >= 1 && e.KeyChar <= 31) || e.KeyChar == (char)Keys.Back) { }
             else e.Handled = true;
         }
 
         private void fioBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar >= 'А' && e.KeyChar <= 'Я') || (e.KeyChar >= 'а' && e.KeyChar <= 'я') || e.KeyChar == '-' || e.KeyChar == (char)Keys.Space ||  e.KeyChar == (char)Keys.Back) { }
-            else e.Handled = true;
-        }
-
-        private void firstPasswordBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar != (char)Keys.Space) { }
+            if ((e.KeyChar >= 'А' && e.KeyChar <= 'Я') || (e.KeyChar >= 1 && e.KeyChar <= 31) || (e.KeyChar >= 'а' && e.KeyChar <= 'я') || e.KeyChar == 45 || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space) { }
             else e.Handled = true;
         }
 
@@ -135,6 +125,8 @@ namespace NotarialOffice
                 MessageBox.Show("Для регистрации введите дату рождения", "Примечание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else if (!DateTime.TryParse(dob, out DateTime dt))
                 MessageBox.Show("Для регистрации введите корректно дату рождения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if ((dt.AddYears(18) - DateTime.Now).TotalDays > 0)
+                MessageBox.Show("Для регистрации Вы должны быть совершеннолетим", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (String.IsNullOrEmpty(firstPassword) && String.IsNullOrEmpty(secondPassword))
                 MessageBox.Show("Для регистрации введите пароль(-и)", "Примечание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else if (firstPassword.Length < 8 || secondPassword.Length < 8)
@@ -160,21 +152,30 @@ namespace NotarialOffice
                     }
                     else
                     {
-                        dataTable = MainForm.GetData($"exec [dbo].[AddNewCustomer] {lastName}, {firstName}, {middleName}, {dob}, {phone}, {email}, {firstPassword}");
-                        MessageBox.Show("Вы были успешно зарегистрированы\nСейчас вы перенаправитесь на главную страницу", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dataTable = MainForm.GetData($"exec [dbo].[AddNewCustomer] '{lastName}', '{firstName}', {middleName}, '{dob}', {phone}, '{email}', '{firstPassword}'");
+                        if (dataTable.Rows.Count != 0)
+                        {
+                            MessageBox.Show("Вы были успешно зарегистрированы\nСейчас вы перенаправитесь на главную страницу", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        MainForm.AccountID = dataTable.Rows[0][0].ToString();
-                        MainForm.CustomerID = dataTable.Rows[1][0].ToString();
-                        MainForm.UserName = lastName + " " + firstName.Substring(0, 1) + "." + middleName.Substring(0, 1) + ".";
+                            MainForm.AccountID = dataTable.Rows[0][0].ToString();
+                            MainForm.CustomerID = dataTable.Rows[1][0].ToString();
+                            MainForm.UserName = lastName + " " + firstName.Substring(0, 1) + ".";
+                            if (middleName != "NULL")
+                                MainForm.UserName += middleName.Substring(0, 1) + ".";
 
-                        Form mainForm = new MainForm();
-                        this.Close();
-                        mainForm.Show();
+                            Form mainForm = new MainForm();
+                            this.Close();
+                            mainForm.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Не удалось завершить регистрацию\nПопробуйте позже", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
                 catch
                 {
-                    MessageBox.Show("Зарегистрироваться не получилось\nПопробуйте снова", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Не удалось установить соединение с базой данных\nПопробуйте позже или восстановите резервную копию необходимой базы данных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

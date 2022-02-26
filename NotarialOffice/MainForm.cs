@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Microsoft.Win32;
+using System.IO;
 
 namespace NotarialOffice
 {
@@ -53,26 +55,46 @@ namespace NotarialOffice
                 logInPanel.Visible = false;
             }
 
-            //OpenMainPage();
+            ColorSwitcher(goToInfo);
+            OpenChildForm(new InfoForm());
+        }
+
+        private void OpenChildForm(Form childForm)
+        {
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            workPanel.Controls.Add(childForm);
+            workPanel.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+            
+            //string path = Path.Combine(Registry.LocalMachine.Name, @"SOFTWARE\Microsoft\SQMClient");
+            //Guid MachineId = new Guid((string)Registry.GetValue(path, "MachineId", null));
+            MessageBox.Show(Environment.MachineName.ToString());
         }
 
         private void ColorSwitcher(object sender)
         {
             Button btSender = (Button)sender;
 
-            if (Size != new Size(1200, 800))
-                Size = new Size(1200, 800);
-            lastUsedButton.BackColor = Color.FromArgb(140, 179, 247);
-            lastUsedButton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
+            if (Size != new Size(1000, 700))
+                Size = new Size(1000, 700);
+            if (btSender.Name == "goToSettings")
+                Size = new Size(650, 700);
+
+            if (btSender.Name == "goToInfo")
+                mainLogo.Enabled = false;
+            else
+                mainLogo.Enabled = true;
+
+            lastUsedButton.BackColor = Color.FromArgb(214, 184, 134);
+            lastUsedButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
             lastUsedButton.Enabled = true;
 
-            btSender.BackColor = Color.FromArgb(211, 227, 252);
-            btSender.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold);
+            btSender.BackColor = Color.FromArgb(216, 200, 172);
+            btSender.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
             btSender.Enabled = false;
-            if (btSender.Name == "goToSettings")
-                Size = new Size(600, 800);
-            if (btSender.Name == "goToHotelRooms")
-                Size = new Size(1393, 800);
 
             lastUsedButton = btSender;
         }
@@ -88,7 +110,7 @@ namespace NotarialOffice
 
         private void formPanel_Paint(object sender, PaintEventArgs e)
         {
-            ControlPaint.DrawBorder(e.Graphics, formPanel.ClientRectangle,
+            ControlPaint.DrawBorder(e.Graphics, workPanel.ClientRectangle,
                            Color.FromArgb(90, 54, 32), 0, ButtonBorderStyle.Solid, 
                            Color.FromArgb(90, 54, 32), 0, ButtonBorderStyle.Solid, 
                            Color.FromArgb(90, 54, 32), 2, ButtonBorderStyle.Solid, 
@@ -143,16 +165,21 @@ namespace NotarialOffice
 
         public static DataTable GetData(string cmd)
         {
+            // Строка для подключения к базе данных
             string connectionString = $@"Data Source={DataSource};Initial Catalog={InitialCatalog};Integrated Security=True";
-
+            
+            // Хранилище для выходящих данных
             DataTable dataTable = new DataTable();
+            
+            // Работа с базой данных
             using (var connection = new SqlConnection(connectionString))
             {
                 // Открываем асинхронное соединение с базой данных
                 Task connectionTask = connection.OpenAsync();
                 Task.WaitAll(connectionTask);
 
-                // Если соединение произвелось успешно
+                // Если соединение произвелось успешно, то
+                // выполняем команду и считываем выходящие данные
                 if (!connectionTask.IsFaulted)
                 {
                     SqlCommand command = connection.CreateCommand();
@@ -168,6 +195,37 @@ namespace NotarialOffice
             }
 
             return dataTable;
+        }
+
+        private void goToInfo_Click(object sender, EventArgs e)
+        {
+            ColorSwitcher(goToInfo);
+            OpenChildForm(new InfoForm());
+        }
+
+        private void goToDocuments_Click(object sender, EventArgs e)
+        {
+            ColorSwitcher(sender);
+        }
+
+        private void goToSettings_Click(object sender, EventArgs e)
+        {
+            ColorSwitcher(sender);
+        }
+
+        private void goToMyDocuments_Click(object sender, EventArgs e)
+        {
+            ColorSwitcher(sender);
+        }
+
+        private void goToCustomers_Click(object sender, EventArgs e)
+        {
+            ColorSwitcher(sender);
+        }
+
+        private void goToEmployees_Click(object sender, EventArgs e)
+        {
+            ColorSwitcher(sender);
         }
     }
 }
