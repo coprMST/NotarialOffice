@@ -143,28 +143,25 @@ namespace NotarialOffice
                             SuccessfulAuthorization("customer");
                     }
                     else
-                    MessageBox.Show("Для авторизации были введены некорректные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                        MessageBox.Show("Для авторизации были введены некорректные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 catch
-            {
-                MessageBox.Show("Не удалось установить соединение с базой данных\nПопробуйте позже или восстановите резервную копию необходимой базы данных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                {
+                    MessageBox.Show("Не удалось установить соединение с базой данных\nПопробуйте позже или восстановите резервную копию необходимой базы данных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-        }
 
             void SuccessfulAuthorization(string user)
             {
                 MainForm.AccountID = data.Rows[0][0].ToString();
-                MainForm.UserName = data.Rows[0][2].ToString() + " " + data.Rows[0][3].ToString().Substring(0, 1) + ".";
+                MainForm.userName = data.Rows[0][2].ToString() + " " + data.Rows[0][3].ToString().Substring(0, 1) + ".";
                 if (data.Rows[0][4] != DBNull.Value)
-                    MainForm.UserName += data.Rows[0][4].ToString().Substring(0, 1) + ".";
+                    MainForm.userName += data.Rows[0][4].ToString().Substring(0, 1) + ".";
                 
-                if (user == "customer")
+                switch (user)
                 {
-                    MainForm.CustomerID = data.Rows[0][1].ToString();
-                }
-                else if (user == "employee")
-                {
-                    MainForm.EmployeeID = data.Rows[0][1].ToString();
+                    case "customer": MainForm.customerID = data.Rows[0][1].ToString(); break;
+                    case "employee": MainForm.employeeID = data.Rows[0][1].ToString(); break;
                 }
 
                 goToBackForm();

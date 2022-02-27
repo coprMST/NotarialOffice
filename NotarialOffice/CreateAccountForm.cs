@@ -158,10 +158,10 @@ namespace NotarialOffice
                             MessageBox.Show("Вы были успешно зарегистрированы\nСейчас вы перенаправитесь на главную страницу", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             MainForm.AccountID = dataTable.Rows[0][0].ToString();
-                            MainForm.CustomerID = dataTable.Rows[1][0].ToString();
-                            MainForm.UserName = lastName + " " + firstName.Substring(0, 1) + ".";
+                            MainForm.customerID = dataTable.Rows[1][0].ToString();
+                            MainForm.userName = lastName + " " + firstName.Substring(0, 1) + ".";
                             if (middleName != "NULL")
-                                MainForm.UserName += middleName.Substring(0, 1) + ".";
+                                MainForm.userName += middleName.Substring(0, 1) + ".";
 
                             Form mainForm = new MainForm();
                             this.Close();

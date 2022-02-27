@@ -16,15 +16,15 @@ namespace NotarialOffice
     public partial class MainForm : Form
     {
         public static string AccountID { get; set; }
-        public static string EmployeeID { get; set; }
-        public static string CustomerID { get; set; }
-        public static string UserName { get; set; }
+        public static string employeeID { get; set; }
+        public static string customerID { get; set; }
+        public static string userName { get; set; }
         Button lastUsedButton { get; set; }
 
         private int x = 0;
         private int y = 0;
-        public static string DataSource = "localhost";
-        public static string InitialCatalog = "NotarialOffice";
+        public static string dataSource = "localhost";
+        public static string initialCatalog = "NotarialOffice";
 
         public MainForm()
         {
@@ -35,16 +35,16 @@ namespace NotarialOffice
             {
                 goToLogIn.Visible = false;
                 logInPanel.Visible = true;
-                myNameLabel.Text = UserName;
+                myNameLabel.Text = userName;
 
-                if (EmployeeID != null)
+                if (employeeID != null)
                 {
                     goToEmployees.Visible = true;
                     goToDocuments.Visible = false;
                     goToCustomers.Visible = true;
                     goToEmployees.Visible = true;
                 }
-                else if (CustomerID != null)
+                else if (customerID != null)
                 {
                     goToMyDocuments.Visible = true;
                 }
@@ -69,9 +69,7 @@ namespace NotarialOffice
             childForm.BringToFront();
             childForm.Show();
             
-            //string path = Path.Combine(Registry.LocalMachine.Name, @"SOFTWARE\Microsoft\SQMClient");
-            //Guid MachineId = new Guid((string)Registry.GetValue(path, "MachineId", null));
-            MessageBox.Show(Environment.MachineName.ToString());
+            //MessageBox.Show(Environment.MachineName.ToString());
         }
 
         private void ColorSwitcher(object sender)
@@ -83,10 +81,7 @@ namespace NotarialOffice
             if (btSender.Name == "goToSettings")
                 Size = new Size(650, 700);
 
-            if (btSender.Name == "goToInfo")
-                mainLogo.Enabled = false;
-            else
-                mainLogo.Enabled = true;
+            mainLogo.Enabled = btSender.Name == "goToInfo" ? false : true;
 
             lastUsedButton.BackColor = Color.FromArgb(214, 184, 134);
             lastUsedButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
@@ -147,9 +142,9 @@ namespace NotarialOffice
             authorization.Show();
 
             AccountID = null;
-            EmployeeID = null;
-            CustomerID = null;
-            UserName = null;
+            employeeID = null;
+            customerID = null;
+            userName = null;
         }
 
         private void goToLogOut_Click(object sender, EventArgs e)
@@ -158,15 +153,15 @@ namespace NotarialOffice
             goToLogIn.Visible = true;
 
             AccountID = null;
-            EmployeeID = null;
-            CustomerID = null;
-            UserName = null;
+            employeeID = null;
+            customerID = null;
+            userName = null;
         }
 
         public static DataTable GetData(string cmd)
         {
             // Строка для подключения к базе данных
-            string connectionString = $@"Data Source={DataSource};Initial Catalog={InitialCatalog};Integrated Security=True";
+            string connectionString = $@"Data Source={dataSource};Initial Catalog={initialCatalog};Integrated Security=True";
             
             // Хранилище для выходящих данных
             DataTable dataTable = new DataTable();
@@ -206,6 +201,7 @@ namespace NotarialOffice
         private void goToDocuments_Click(object sender, EventArgs e)
         {
             ColorSwitcher(sender);
+            OpenChildForm(new Documents());
         }
 
         private void goToSettings_Click(object sender, EventArgs e)
