@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -109,7 +108,7 @@ namespace NotarialOffice
             var dob = dobBox.Text;
             var topPassword = firstPasswordBox.Text;
             var bottomPassword = secondPasswordBox.Text;
-
+            
             if (IsNullOrEmpty(email))
                 MessageBox.Show(@"Для регистрации введите электронную почту", @"Примечание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else if (!Regex.IsMatch(email, ".+[@].+[.].+"))
@@ -124,9 +123,9 @@ namespace NotarialOffice
                 MessageBox.Show(@"Для регистрации введите корректно фамилию, имя и отчество (при наличии)", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (IsNullOrEmpty(dob))
                 MessageBox.Show(@"Для регистрации введите дату рождения", @"Примечание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else if (!DateTime.TryParse(dob, out DateTime dt))
+            else if (!DateTime.TryParse(dob, out var date))
                 MessageBox.Show(@"Для регистрации введите корректно дату рождения", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if ((dt.AddYears(18) - DateTime.Now).TotalDays > 0)
+            else if ((date.AddYears(18) - DateTime.Today).TotalDays >= 0)
                 MessageBox.Show(@"Для регистрации Вы должны быть совершеннолетим", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (IsNullOrEmpty(topPassword) && IsNullOrEmpty(bottomPassword))
                 MessageBox.Show(@"Для регистрации введите пароль(-и)", @"Примечание", MessageBoxButtons.OK, MessageBoxIcon.Warning);

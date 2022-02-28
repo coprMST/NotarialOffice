@@ -11,6 +11,9 @@ namespace NotarialOffice
             InitializeComponent();
             SetRoundedShape(goToSavegoToSave, 30);
             SetRoundedShape(goToSetSettings, 30);
+            
+            dataSource.Text = MainForm.DataSource;
+            initialCatalog.Text = MainForm.InitialCatalog;
         }
         
         private static void SetRoundedShape(Control control, int radius)
@@ -40,6 +43,9 @@ namespace NotarialOffice
             MainForm.DataSource = "localhost";
             MainForm.InitialCatalog = "NotarialOffice";
 
+            dataSource.Text = MainForm.DataSource;
+            initialCatalog.Text = MainForm.InitialCatalog;
+            
             MessageBox.Show(@"Настройки были сброшены", @"Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }

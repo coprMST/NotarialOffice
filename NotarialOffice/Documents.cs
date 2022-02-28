@@ -89,6 +89,7 @@ namespace NotarialOffice
                         SetRoundedShape(pn, 30);
 
                         var lb2 = new Label();
+                        lb2.Height = 48;
                         lb2.Dock = DockStyle.Top;
                         lb2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
                         lb2.ForeColor = Color.FromArgb(90, 54, 32);

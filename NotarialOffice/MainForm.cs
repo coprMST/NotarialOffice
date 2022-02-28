@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace NotarialOffice
 {
@@ -132,7 +133,7 @@ namespace NotarialOffice
         private void goToLogIn_Click(object sender, EventArgs e)
         {
             Form authorization = new AuthorizationForm();
-            this.Hide();
+            Hide();
             authorization.Show();
 
             AccountId = null;
@@ -154,6 +155,16 @@ namespace NotarialOffice
 
         public static DataTable GetData(string cmd)
         {
+            //var getData = new Thread(Aboba);
+            //getData.SetApartmentState(ApartmentState.STA);
+            //getData.IsBackground = true;
+            //DataTable abc = getData.Start();
+            //
+            //DataTable Aboba()
+            //{
+            //    
+            //}
+
             // Строка для подключения к базе данных
             var connectionString = $@"Data Source={DataSource};Initial Catalog={InitialCatalog};Integrated Security=True";
             
@@ -164,21 +175,23 @@ namespace NotarialOffice
             using (var connection = new SqlConnection(connectionString))
             {
                 // Открываем асинхронное соединение с базой данных
-                var connectionTask = connection.OpenAsync();
+                Task connectionTask = connection.OpenAsync();
                 Task.WaitAll(connectionTask);
+                
+                // Если соединение не установлено, то завершаем работу
                 if (connectionTask.IsFaulted) return dataTable;
 
                 // Если соединение произвелось успешно, то
                 // выполняем команду и считываем выходящие данные
                 var command = connection.CreateCommand();
                 command.CommandText = cmd;
-
                 using (var reader = command.ExecuteReader())
                 {
                     dataTable.Load(reader);
                 }
             }
-
+            
+            // Возвращаем данные
             return dataTable;
         }
 

@@ -74,14 +74,14 @@ namespace NotarialOffice
         private void GoToBackForm()
         {
             Form mainForm = new MainForm();
-            this.Close();
+            Close();
             mainForm.Show();
         }
 
         private void goToCreateAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Form createAccountForm = new CreateAccountForm();
-            this.Close();
+            Close();
             createAccountForm.Show();
         }
 
