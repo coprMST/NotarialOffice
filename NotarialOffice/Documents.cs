@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 
@@ -13,10 +9,10 @@ namespace NotarialOffice
 {
     public partial class Documents : Form
     {
-        List<string> comments = new List<string>();
+        private readonly List<string> _comments = new List<string>();
 
-        string sortType = string.Empty;
-        string filtrationType = string.Empty;
+        private string _sortType;
+        private string _filtrationType = string.Empty;
 
         public Documents()
         {
@@ -30,24 +26,24 @@ namespace NotarialOffice
             SetRoundedShape(goToSortDocumentTypeAZ, 45);
             SetRoundedShape(goToSortDocumentTypeZA, 45);
 
-            sortType = "order by DT.DocumentTypeName asc, D.DocumentName asc";
+            _sortType = "order by DT.DocumentTypeName asc, D.DocumentName asc";
 
             Update();
         }
 
-        private void linkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LinkLabel snd = (LinkLabel)sender;
+            var snd = (LinkLabel)sender;
 
-            string[] temp = snd.Name.Split(new char[] { '_' });
-            int serviceID = Convert.ToInt32(temp[1]);
+            var temp = snd.Name.Split('_');
+            var serviceId = Convert.ToInt32(temp[1]);
 
-            MessageBox.Show(comments.ElementAt(serviceID), "Информация");
+            MessageBox.Show(_comments.ElementAt(serviceId), @"Информация");
         }
 
-        void SetRoundedShape(Control control, int radius)
+        private static void SetRoundedShape(Control control, int radius)
         {
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            var path = new System.Drawing.Drawing2D.GraphicsPath();
             path.AddLine(radius, 0, control.Width - radius, 0);
             path.AddArc(control.Width - radius, 0, radius, radius, 270, 90);
             path.AddLine(control.Width, radius, control.Width, control.Height - radius);
@@ -59,32 +55,31 @@ namespace NotarialOffice
             control.Region = new Region(path);
         }
 
-        void Update()
+        private new void Update()
         {
             workPanel.Enabled = false;
 
-            filtrationType = $"where DT.DocumentTypeName like '%' + '{seacher.Text.Trim()}' + '%' or D.DocumentName like '%' + '{seacher.Text.Trim()}' + '%'";
+            _filtrationType = $"where DT.DocumentTypeName like '%' + '{seacher.Text.Trim()}' + '%' or D.DocumentName like '%' + '{seacher.Text.Trim()}' + '%'";
             switch (filtrationBox.SelectedItem)
             {
-                case "По названию документа": filtrationType = $"where D.DocumentName like '%' + '{seacher.Text.Trim()}' + '%'"; break;
-                case "По названию типа документа": filtrationType = $"where DT.DocumentTypeName like '%' + '{seacher.Text.Trim()}' + '%'"; break;
-                case "none": filtrationType = $"where DT.DocumentTypeName like '%' + '{seacher.Text.Trim()}' + '%' or D.DocumentName like '%' + '{seacher.Text.Trim()}' + '%'"; break;
+                case "По названию документа": _filtrationType = $"where D.DocumentName like '%' + '{seacher.Text.Trim()}' + '%'"; break;
+                case "По названию типа документа": _filtrationType = $"where DT.DocumentTypeName like '%' + '{seacher.Text.Trim()}' + '%'"; break;
+                case "none": _filtrationType = $"where DT.DocumentTypeName like '%' + '{seacher.Text.Trim()}' + '%' or D.DocumentName like '%' + '{seacher.Text.Trim()}' + '%'"; break;
             }
 
-            string cmd;
-            cmd = "select DT.DocumentTypeName, D.DocumentName, D.Tariff, D.[Percent], D.Apiece, D.Comment from [dbo].[Documents] D inner join [dbo].[DocumentTypes] DT on D.DocumentTypeID = DT.DocumentTypeID";
-            cmd += " " + filtrationType;
-            cmd += " " + sortType;
+            var cmd = "select DT.DocumentTypeName, D.DocumentName, D.Tariff, D.[Percent], D.Apiece, D.Comment from [dbo].[Documents] D inner join [dbo].[DocumentTypes] DT on D.DocumentTypeID = DT.DocumentTypeID";
+            cmd += $" {_filtrationType}";
+            cmd += $" {_sortType}";
 
             try
             {
-                comments.Clear();
+                _comments.Clear();
                 servicesPanel.Controls.Clear();
-                DataTable data = MainForm.GetData(cmd);
+                var data = MainForm.GetData(cmd);
 
                 if (data.Rows.Count != 0)
                 {
-                    for (int i = 0; i < data.Rows.Count; i++)
+                    for (var i = 0; i < data.Rows.Count; i++)
                     {
                         var pn = new Panel();
                         pn.AutoSize = false;
@@ -95,7 +90,6 @@ namespace NotarialOffice
 
                         var lb2 = new Label();
                         lb2.Dock = DockStyle.Top;
-                        lb2.Height = 52;
                         lb2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
                         lb2.ForeColor = Color.FromArgb(90, 54, 32);
                         lb2.Padding = new Padding(10, 5, 10, 0);
@@ -118,11 +112,11 @@ namespace NotarialOffice
                         lb3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
                         lb3.ForeColor = Color.FromArgb(90, 54, 32);
                         lb3.Padding = new Padding(10, 0, 10, 0);
-                        lb3.Text = "Стоимость: " + data.Rows[i][2].ToString().Substring(0, data.Rows[i][2].ToString().Length - 3) + "₽";
+                        lb3.Text = @"Стоимость: " + data.Rows[i][2].ToString().Substring(0, data.Rows[i][2].ToString().Length - 3) + @"₽";
                         if (data.Rows[i][3] != DBNull.Value)
-                            lb3.Text += " + " + data.Rows[i][3].ToString().Substring(0, data.Rows[i][3].ToString().Length - 1) + "%";
+                            lb3.Text += @" + " + data.Rows[i][3].ToString().Substring(0, data.Rows[i][3].ToString().Length - 1) + @"%";
                         if (data.Rows[i][4] != DBNull.Value)
-                            lb3.Text += " + " + data.Rows[i][4].ToString().Substring(0, data.Rows[i][4].ToString().Length - 3) + "₽/шт.";
+                            lb3.Text += @" + " + data.Rows[i][4].ToString().Substring(0, data.Rows[i][4].ToString().Length - 3) + @"₽/шт.";
                         pn.Controls.Add(lb3);
 
                         if (data.Rows[i][5] != DBNull.Value)
@@ -135,34 +129,35 @@ namespace NotarialOffice
                             lb4.LinkColor = Color.FromArgb(90, 54, 32);
                             lb4.ForeColor = Color.FromArgb(90, 54, 32);
                             lb4.Padding = new Padding(10, 0, 10, 10);
-                            lb4.LinkClicked += linkClicked;
-                            lb4.Text = "Смотреть подробнее...";
+                            lb4.LinkClicked += LinkClicked;
+                            lb4.Text = @"Смотреть подробнее...";
                             pn.Controls.Add(lb4);
                         }
 
-                        if (data.Rows[i][5] == DBNull.Value) comments.Add("Ошибка");
-                        else comments.Add(data.Rows[i][5].ToString());
-
+                        _comments.Add(data.Rows[i][5] == DBNull.Value ? "Ошибка" : data.Rows[i][5].ToString());
                     }
 
                     servicesPanel.Visible = true;
                 }
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
 
             workPanel.Enabled = true;
         }
 
         private void DataSort(object sender, EventArgs e)
         {
-            IconButton btSender = (IconButton)sender;
+            var btSender = (IconButton)sender;
 
             switch (btSender.Name)
             {
-                case "goToSortDocumentTypeAZ": sortType = "order by DT.DocumentTypeName asc, D.DocumentName asc"; break;
-                case "goToSortDocumentTypeZA": sortType = "order by DT.DocumentTypeName desc, D.DocumentName asc"; break;
-                case "goToSortDocumentAZ": sortType = "order by D.DocumentName asc, DT.DocumentTypeName asc"; break;
-                case "goToSortDocumentZA": sortType = "order by D.DocumentName desc, DT.DocumentTypeName asc"; break;
+                case "goToSortDocumentTypeAZ": _sortType = "order by DT.DocumentTypeName asc, D.DocumentName asc"; break;
+                case "goToSortDocumentTypeZA": _sortType = "order by DT.DocumentTypeName desc, D.DocumentName asc"; break;
+                case "goToSortDocumentAZ": _sortType = "order by D.DocumentName asc, DT.DocumentTypeName asc"; break;
+                case "goToSortDocumentZA": _sortType = "order by D.DocumentName desc, DT.DocumentTypeName asc"; break;
             }
 
             Update();

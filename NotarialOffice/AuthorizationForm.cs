@@ -4,13 +4,14 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.String;
 
 namespace NotarialOffice
 {
     public partial class AuthorizationForm : Form
     {
-        private int x = 0;
-        private int y = 0;
+        private int _x;
+        private int _y;
 
         public AuthorizationForm()
         {
@@ -19,9 +20,9 @@ namespace NotarialOffice
             SetRoundedShape(goToClear, 45);
         }
 
-        void SetRoundedShape(Control control, int radius)
+        private static void SetRoundedShape(Control control, int radius)
         {
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            var path = new System.Drawing.Drawing2D.GraphicsPath();
             path.AddLine(radius, 0, control.Width - radius, 0);
             path.AddArc(control.Width - radius, 0, radius, radius, 270, 90);
             path.AddLine(control.Width, radius, control.Width, control.Height - radius);
@@ -46,13 +47,13 @@ namespace NotarialOffice
         {
             if (e.Button == MouseButtons.Left)
             {
-                Location = new Point(Location.X + (e.X - x), Location.Y + (e.Y - y));
+                Location = new Point(Location.X + (e.X - _x), Location.Y + (e.Y - _y));
             }
         }
 
         private void headerPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            x = e.X; y = e.Y;
+            _x = e.X; _y = e.Y;
         }
 
         private void goToExitApp_Click(object sender, EventArgs e)
@@ -67,10 +68,10 @@ namespace NotarialOffice
 
         private void goToBack_Click(object sender, EventArgs e)
         {
-            goToBackForm();
+            GoToBackForm();
         }
 
-        private void goToBackForm()
+        private void GoToBackForm()
         {
             Form mainForm = new MainForm();
             this.Close();
@@ -95,15 +96,14 @@ namespace NotarialOffice
 
         private void goToLogIn_Click(object sender, EventArgs e)
         {
-            long test;
-            string login = loginBox.Text;
-            string password = passwordBox.Text;
-            DataTable data = new DataTable();
-
-            if (String.IsNullOrEmpty(login))
-                MessageBox.Show("Для авторизации введите номер телефона или электронную почту", "Примечание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else if (String.IsNullOrEmpty(password))
-                MessageBox.Show("Для авторизации введите пароль", "Примечание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            var login = loginBox.Text;
+            var password = passwordBox.Text;
+            DataTable data;
+            
+            if (IsNullOrEmpty(login))
+                MessageBox.Show(@"Для авторизации введите номер телефона или электронную почту", @"Примечание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else if (IsNullOrEmpty(password))
+                MessageBox.Show(@"Для авторизации введите пароль", @"Примечание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else
             {
                 try
@@ -116,8 +116,8 @@ namespace NotarialOffice
                             data = MainForm.GetData($"exec [dbo].[GetEmployee] null, '{login}', '{password}'");
                             if (data.Rows.Count == 0)
                             {
-                                MessageBox.Show("Для авторизации были введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                passwordBox.Text = string.Empty;
+                                MessageBox.Show(@"Для авторизации были введены неверные данные", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                passwordBox.Text = Empty;
                             } 
                             else 
                                 SuccessfulAuthorization("employee");
@@ -125,7 +125,7 @@ namespace NotarialOffice
                         else 
                             SuccessfulAuthorization("customer");
                     }
-                    else if (long.TryParse(login, out test))
+                    else if (long.TryParse(login, out _))
                     {
                         data = MainForm.GetData($"exec [dbo].[GetCustomer] '{login}', null, '{password}'");
                         if (data.Rows.Count == 0)
@@ -133,8 +133,8 @@ namespace NotarialOffice
                             data = MainForm.GetData($"exec [dbo].[GetEmployee] '{login}', null, '{password}'");
                             if (data.Rows.Count == 0)
                             {
-                                MessageBox.Show("Для авторизации были введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                passwordBox.Text = string.Empty;
+                                MessageBox.Show(@"Для авторизации были введены неверные данные", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                passwordBox.Text = Empty;
                             }
                             else
                                 SuccessfulAuthorization("employee");
@@ -143,28 +143,29 @@ namespace NotarialOffice
                             SuccessfulAuthorization("customer");
                     }
                     else
-                        MessageBox.Show("Для авторизации были введены некорректные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(@"Для авторизации были введены некорректные данные", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch
                 {
-                    MessageBox.Show("Не удалось установить соединение с базой данных\nПопробуйте позже или восстановите резервную копию необходимой базы данных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(@"Не удалось установить соединение с базой данных
+Попробуйте позже или восстановите резервную копию необходимой базы данных", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
             void SuccessfulAuthorization(string user)
             {
-                MainForm.AccountID = data.Rows[0][0].ToString();
-                MainForm.userName = data.Rows[0][2].ToString() + " " + data.Rows[0][3].ToString().Substring(0, 1) + ".";
+                MainForm.AccountId = data.Rows[0][0].ToString();
+                MainForm.UserName = data.Rows[0][2] + " " + data.Rows[0][3].ToString().Substring(0, 1) + ".";
                 if (data.Rows[0][4] != DBNull.Value)
-                    MainForm.userName += data.Rows[0][4].ToString().Substring(0, 1) + ".";
+                    MainForm.UserName += data.Rows[0][4].ToString().Substring(0, 1) + ".";
                 
                 switch (user)
                 {
-                    case "customer": MainForm.customerID = data.Rows[0][1].ToString(); break;
-                    case "employee": MainForm.employeeID = data.Rows[0][1].ToString(); break;
+                    case "customer": MainForm.CustomerId = data.Rows[0][1].ToString(); break;
+                    case "employee": MainForm.EmployeeId = data.Rows[0][1].ToString(); break;
                 }
 
-                goToBackForm();
+                GoToBackForm();
             }
         }
 
@@ -176,8 +177,8 @@ namespace NotarialOffice
 
         private void goToClear_Click(object sender, EventArgs e)
         {
-            loginBox.Text = string.Empty;
-            passwordBox.Text = string.Empty;
+            loginBox.Text = Empty;
+            passwordBox.Text = Empty;
         }
     }
 }

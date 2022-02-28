@@ -54,14 +54,14 @@ namespace NotarialOffice
             // 
             // goToSortDocumentAZ
             // 
-            this.goToSortDocumentAZ.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(190)))), ((int)(((byte)(157)))));
+            this.goToSortDocumentAZ.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (210)))), ((int) (((byte) (190)))), ((int) (((byte) (157)))));
             this.goToSortDocumentAZ.Cursor = System.Windows.Forms.Cursors.Hand;
             this.goToSortDocumentAZ.FlatAppearance.BorderSize = 0;
             this.goToSortDocumentAZ.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToSortDocumentAZ.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.goToSortDocumentAZ.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToSortDocumentAZ.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.goToSortDocumentAZ.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToSortDocumentAZ.IconChar = FontAwesome.Sharp.IconChar.SortAlphaDown;
-            this.goToSortDocumentAZ.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToSortDocumentAZ.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToSortDocumentAZ.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToSortDocumentAZ.IconSize = 40;
             this.goToSortDocumentAZ.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -78,14 +78,14 @@ namespace NotarialOffice
             // 
             // goToSortDocumentZA
             // 
-            this.goToSortDocumentZA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(190)))), ((int)(((byte)(157)))));
+            this.goToSortDocumentZA.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (210)))), ((int) (((byte) (190)))), ((int) (((byte) (157)))));
             this.goToSortDocumentZA.Cursor = System.Windows.Forms.Cursors.Hand;
             this.goToSortDocumentZA.FlatAppearance.BorderSize = 0;
             this.goToSortDocumentZA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToSortDocumentZA.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.goToSortDocumentZA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToSortDocumentZA.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.goToSortDocumentZA.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToSortDocumentZA.IconChar = FontAwesome.Sharp.IconChar.SortAlphaDownAlt;
-            this.goToSortDocumentZA.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToSortDocumentZA.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToSortDocumentZA.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToSortDocumentZA.IconSize = 40;
             this.goToSortDocumentZA.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -102,14 +102,14 @@ namespace NotarialOffice
             // 
             // goToSortDocumentTypeZA
             // 
-            this.goToSortDocumentTypeZA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(190)))), ((int)(((byte)(157)))));
+            this.goToSortDocumentTypeZA.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (210)))), ((int) (((byte) (190)))), ((int) (((byte) (157)))));
             this.goToSortDocumentTypeZA.Cursor = System.Windows.Forms.Cursors.Hand;
             this.goToSortDocumentTypeZA.FlatAppearance.BorderSize = 0;
             this.goToSortDocumentTypeZA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToSortDocumentTypeZA.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.goToSortDocumentTypeZA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToSortDocumentTypeZA.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.goToSortDocumentTypeZA.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToSortDocumentTypeZA.IconChar = FontAwesome.Sharp.IconChar.SortAlphaDownAlt;
-            this.goToSortDocumentTypeZA.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToSortDocumentTypeZA.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToSortDocumentTypeZA.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToSortDocumentTypeZA.IconSize = 40;
             this.goToSortDocumentTypeZA.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -126,14 +126,14 @@ namespace NotarialOffice
             // 
             // goToSortDocumentTypeAZ
             // 
-            this.goToSortDocumentTypeAZ.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(190)))), ((int)(((byte)(157)))));
+            this.goToSortDocumentTypeAZ.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (210)))), ((int) (((byte) (190)))), ((int) (((byte) (157)))));
             this.goToSortDocumentTypeAZ.Cursor = System.Windows.Forms.Cursors.Hand;
             this.goToSortDocumentTypeAZ.FlatAppearance.BorderSize = 0;
             this.goToSortDocumentTypeAZ.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToSortDocumentTypeAZ.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.goToSortDocumentTypeAZ.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToSortDocumentTypeAZ.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.goToSortDocumentTypeAZ.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToSortDocumentTypeAZ.IconChar = FontAwesome.Sharp.IconChar.SortAlphaDown;
-            this.goToSortDocumentTypeAZ.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToSortDocumentTypeAZ.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToSortDocumentTypeAZ.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToSortDocumentTypeAZ.IconSize = 40;
             this.goToSortDocumentTypeAZ.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -154,15 +154,15 @@ namespace NotarialOffice
             this.workPanel.Controls.Add(this.filtrationPanel);
             this.workPanel.Controls.Add(this.seacherPanel);
             this.workPanel.Controls.Add(this.servicesPanel);
-            this.workPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.workPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.workPanel.Location = new System.Drawing.Point(0, 0);
             this.workPanel.Name = "workPanel";
-            this.workPanel.Size = new System.Drawing.Size(800, 622);
+            this.workPanel.Size = new System.Drawing.Size(800, 650);
             this.workPanel.TabIndex = 0;
             // 
             // sortPanel
             // 
-            this.sortPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(190)))), ((int)(((byte)(157)))));
+            this.sortPanel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (210)))), ((int) (((byte) (190)))), ((int) (((byte) (157)))));
             this.sortPanel.Controls.Add(this.goToSortDocumentTypeZA);
             this.sortPanel.Controls.Add(this.goToSortDocumentAZ);
             this.sortPanel.Controls.Add(this.goToSortDocumentZA);
@@ -177,8 +177,8 @@ namespace NotarialOffice
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.label2.Location = new System.Drawing.Point(228, 4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(171, 21);
@@ -189,8 +189,8 @@ namespace NotarialOffice
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.label1.Location = new System.Drawing.Point(39, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 21);
@@ -200,7 +200,7 @@ namespace NotarialOffice
             // 
             // filtrationPanel
             // 
-            this.filtrationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(190)))), ((int)(((byte)(157)))));
+            this.filtrationPanel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (210)))), ((int) (((byte) (190)))), ((int) (((byte) (157)))));
             this.filtrationPanel.Controls.Add(this.filtrationBox);
             this.filtrationPanel.Controls.Add(this.label3);
             this.filtrationPanel.Location = new System.Drawing.Point(442, 12);
@@ -211,13 +211,10 @@ namespace NotarialOffice
             // filtrationBox
             // 
             this.filtrationBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.filtrationBox.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.filtrationBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.filtrationBox.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.filtrationBox.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.filtrationBox.FormattingEnabled = true;
-            this.filtrationBox.Items.AddRange(new object[] {
-            "По названию типа документа",
-            "По названию документа",
-            "none"});
+            this.filtrationBox.Items.AddRange(new object[] {"По названию типа документа", "По названию документа", "none"});
             this.filtrationBox.Location = new System.Drawing.Point(13, 36);
             this.filtrationBox.Name = "filtrationBox";
             this.filtrationBox.Size = new System.Drawing.Size(320, 33);
@@ -227,8 +224,8 @@ namespace NotarialOffice
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.label3.Location = new System.Drawing.Point(8, 8);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(153, 25);
@@ -238,7 +235,7 @@ namespace NotarialOffice
             // 
             // seacherPanel
             // 
-            this.seacherPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(190)))), ((int)(((byte)(157)))));
+            this.seacherPanel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (210)))), ((int) (((byte) (190)))), ((int) (((byte) (157)))));
             this.seacherPanel.Controls.Add(this.seacher);
             this.seacherPanel.Controls.Add(this.label5);
             this.seacherPanel.Location = new System.Drawing.Point(12, 12);
@@ -257,8 +254,8 @@ namespace NotarialOffice
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.label5.Location = new System.Drawing.Point(8, 8);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(117, 25);
@@ -272,14 +269,14 @@ namespace NotarialOffice
             this.servicesPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.servicesPanel.Location = new System.Drawing.Point(25, 218);
             this.servicesPanel.Name = "servicesPanel";
-            this.servicesPanel.Size = new System.Drawing.Size(750, 404);
+            this.servicesPanel.Size = new System.Drawing.Size(750, 420);
             this.servicesPanel.TabIndex = 1;
             // 
             // Documents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(200)))), ((int)(((byte)(172)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (216)))), ((int) (((byte) (200)))), ((int) (((byte) (172)))));
             this.ClientSize = new System.Drawing.Size(800, 650);
             this.Controls.Add(this.workPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -294,7 +291,6 @@ namespace NotarialOffice
             this.seacherPanel.ResumeLayout(false);
             this.seacherPanel.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         #endregion

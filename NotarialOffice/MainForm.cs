@@ -1,50 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using Microsoft.Win32;
-using System.IO;
 
 namespace NotarialOffice
 {
     public partial class MainForm : Form
     {
-        public static string AccountID { get; set; }
-        public static string employeeID { get; set; }
-        public static string customerID { get; set; }
-        public static string userName { get; set; }
-        Button lastUsedButton { get; set; }
+        public static string AccountId { get; set; }
+        public static string EmployeeId { get; set; }
+        public static string CustomerId { get; set; }
+        public static string UserName { get; set; }
+        private Button LastUsedButton { get; set; }
 
-        private int x = 0;
-        private int y = 0;
-        public static string dataSource = "localhost";
-        public static string initialCatalog = "NotarialOffice";
+        private int _x;
+        private int _y; 
+        public static string DataSource = "localhost"; 
+        public static string InitialCatalog = "NotarialOffice";
 
         public MainForm()
         {
             InitializeComponent();
-            lastUsedButton = goToInfo;
+            LastUsedButton = goToInfo;
 
-            if (AccountID != null)
+            if (AccountId != null)
             {
                 goToLogIn.Visible = false;
                 logInPanel.Visible = true;
-                myNameLabel.Text = userName;
+                myNameLabel.Text = UserName;
 
-                if (employeeID != null)
+                if (EmployeeId != null)
                 {
                     goToEmployees.Visible = true;
                     goToDocuments.Visible = false;
                     goToCustomers.Visible = true;
                     goToEmployees.Visible = true;
                 }
-                else if (customerID != null)
+                else if (CustomerId != null)
                 {
                     goToMyDocuments.Visible = true;
                 }
@@ -74,24 +68,24 @@ namespace NotarialOffice
 
         private void ColorSwitcher(object sender)
         {
-            Button btSender = (Button)sender;
+            var btSender = (Button)sender;
 
             if (Size != new Size(1000, 700))
                 Size = new Size(1000, 700);
             if (btSender.Name == "goToSettings")
                 Size = new Size(650, 700);
 
-            mainLogo.Enabled = btSender.Name == "goToInfo" ? false : true;
+            mainLogo.Enabled = btSender.Name != "goToInfo";
 
-            lastUsedButton.BackColor = Color.FromArgb(214, 184, 134);
-            lastUsedButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
-            lastUsedButton.Enabled = true;
+            LastUsedButton.BackColor = Color.FromArgb(214, 184, 134);
+            LastUsedButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
+            LastUsedButton.Enabled = true;
 
             btSender.BackColor = Color.FromArgb(216, 200, 172);
             btSender.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
             btSender.Enabled = false;
 
-            lastUsedButton = btSender;
+            LastUsedButton = btSender;
         }
 
         private void menuPanel_Paint(object sender, PaintEventArgs e)
@@ -116,13 +110,13 @@ namespace NotarialOffice
         {
             if (e.Button == MouseButtons.Left)
             {
-                Location = new Point(Location.X + (e.X - x), Location.Y + (e.Y - y));
+                Location = new Point(Location.X + (e.X - _x), Location.Y + (e.Y - _y));
             }
         }
 
         private void headerPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            x = e.X; y = e.Y;
+            _x = e.X; _y = e.Y;
         }
 
         private void goToExitApp_Click(object sender, EventArgs e)
@@ -141,10 +135,10 @@ namespace NotarialOffice
             this.Hide();
             authorization.Show();
 
-            AccountID = null;
-            employeeID = null;
-            customerID = null;
-            userName = null;
+            AccountId = null;
+            EmployeeId = null;
+            CustomerId = null;
+            UserName = null;
         }
 
         private void goToLogOut_Click(object sender, EventArgs e)
@@ -152,40 +146,36 @@ namespace NotarialOffice
             logInPanel.Visible = false;
             goToLogIn.Visible = true;
 
-            AccountID = null;
-            employeeID = null;
-            customerID = null;
-            userName = null;
+            AccountId = null;
+            EmployeeId = null;
+            CustomerId = null;
+            UserName = null;
         }
 
         public static DataTable GetData(string cmd)
         {
             // Строка для подключения к базе данных
-            string connectionString = $@"Data Source={dataSource};Initial Catalog={initialCatalog};Integrated Security=True";
+            var connectionString = $@"Data Source={DataSource};Initial Catalog={InitialCatalog};Integrated Security=True";
             
             // Хранилище для выходящих данных
-            DataTable dataTable = new DataTable();
+            var dataTable = new DataTable();
             
             // Работа с базой данных
             using (var connection = new SqlConnection(connectionString))
             {
                 // Открываем асинхронное соединение с базой данных
-                Task connectionTask = connection.OpenAsync();
+                var connectionTask = connection.OpenAsync();
                 Task.WaitAll(connectionTask);
+                if (connectionTask.IsFaulted) return dataTable;
 
                 // Если соединение произвелось успешно, то
                 // выполняем команду и считываем выходящие данные
-                if (!connectionTask.IsFaulted)
-                {
-                    SqlCommand command = connection.CreateCommand();
-                    command.CommandText = cmd;
+                var command = connection.CreateCommand();
+                command.CommandText = cmd;
 
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        SqlDataReader DataRead = null;
-                        DataRead = reader;
-                        dataTable.Load(DataRead);
-                    }
+                using (var reader = command.ExecuteReader())
+                {
+                    dataTable.Load(reader);
                 }
             }
 
@@ -207,6 +197,7 @@ namespace NotarialOffice
         private void goToSettings_Click(object sender, EventArgs e)
         {
             ColorSwitcher(sender);
+            OpenChildForm(new SettingsForm());
         }
 
         private void goToMyDocuments_Click(object sender, EventArgs e)

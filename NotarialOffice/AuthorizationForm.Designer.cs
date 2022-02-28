@@ -47,14 +47,15 @@ namespace NotarialOffice
             this.label1 = new System.Windows.Forms.Label();
             this.loginBox = new System.Windows.Forms.TextBox();
             this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.headerPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // headerPanel
             // 
-            this.headerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.headerPanel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.headerPanel.Controls.Add(this.goToBack);
             this.headerPanel.Controls.Add(this.logoLabel);
             this.headerPanel.Controls.Add(this.goToMaximizedApp);
@@ -73,10 +74,10 @@ namespace NotarialOffice
             this.goToBack.Dock = System.Windows.Forms.DockStyle.Left;
             this.goToBack.FlatAppearance.BorderSize = 0;
             this.goToBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.goToBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.goToBack.ForeColor = System.Drawing.Color.White;
             this.goToBack.IconChar = FontAwesome.Sharp.IconChar.ArrowLeft;
-            this.goToBack.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
+            this.goToBack.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (211)))), ((int) (((byte) (227)))), ((int) (((byte) (252)))));
             this.goToBack.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToBack.IconSize = 32;
             this.goToBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -93,8 +94,8 @@ namespace NotarialOffice
             // logoLabel
             // 
             this.logoLabel.AutoSize = true;
-            this.logoLabel.Font = new System.Drawing.Font("Segoe UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.logoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
+            this.logoLabel.Font = new System.Drawing.Font("Segoe UI", 18F, ((System.Drawing.FontStyle) ((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.logoLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (211)))), ((int) (((byte) (227)))), ((int) (((byte) (252)))));
             this.logoLabel.Location = new System.Drawing.Point(66, 9);
             this.logoLabel.Name = "logoLabel";
             this.logoLabel.Size = new System.Drawing.Size(309, 32);
@@ -109,10 +110,10 @@ namespace NotarialOffice
             this.goToMaximizedApp.Dock = System.Windows.Forms.DockStyle.Right;
             this.goToMaximizedApp.FlatAppearance.BorderSize = 0;
             this.goToMaximizedApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToMaximizedApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.goToMaximizedApp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
+            this.goToMaximizedApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.goToMaximizedApp.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (211)))), ((int) (((byte) (227)))), ((int) (((byte) (252)))));
             this.goToMaximizedApp.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
-            this.goToMaximizedApp.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
+            this.goToMaximizedApp.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (211)))), ((int) (((byte) (227)))), ((int) (((byte) (252)))));
             this.goToMaximizedApp.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToMaximizedApp.IconSize = 32;
             this.goToMaximizedApp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -132,10 +133,10 @@ namespace NotarialOffice
             this.goToExitApp.Dock = System.Windows.Forms.DockStyle.Right;
             this.goToExitApp.FlatAppearance.BorderSize = 0;
             this.goToExitApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToExitApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.goToExitApp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
+            this.goToExitApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.goToExitApp.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (211)))), ((int) (((byte) (227)))), ((int) (((byte) (252)))));
             this.goToExitApp.IconChar = FontAwesome.Sharp.IconChar.WindowClose;
-            this.goToExitApp.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(227)))), ((int)(((byte)(252)))));
+            this.goToExitApp.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (211)))), ((int) (((byte) (227)))), ((int) (((byte) (252)))));
             this.goToExitApp.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToExitApp.IconSize = 32;
             this.goToExitApp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -171,9 +172,9 @@ namespace NotarialOffice
             // goToCreateAccount
             // 
             this.goToCreateAccount.AutoSize = true;
-            this.goToCreateAccount.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
-            this.goToCreateAccount.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.goToCreateAccount.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToCreateAccount.DisabledLinkColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.goToCreateAccount.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle) ((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.goToCreateAccount.LinkColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToCreateAccount.Location = new System.Drawing.Point(190, 395);
             this.goToCreateAccount.Name = "goToCreateAccount";
             this.goToCreateAccount.Size = new System.Drawing.Size(223, 21);
@@ -189,10 +190,10 @@ namespace NotarialOffice
             this.goToCheckPassword.Cursor = System.Windows.Forms.Cursors.Hand;
             this.goToCheckPassword.FlatAppearance.BorderSize = 0;
             this.goToCheckPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToCheckPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.goToCheckPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToCheckPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.goToCheckPassword.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToCheckPassword.IconChar = FontAwesome.Sharp.IconChar.Eye;
-            this.goToCheckPassword.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToCheckPassword.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToCheckPassword.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToCheckPassword.IconSize = 32;
             this.goToCheckPassword.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -213,10 +214,10 @@ namespace NotarialOffice
             this.goToClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.goToClear.FlatAppearance.BorderSize = 0;
             this.goToClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToClear.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.goToClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToClear.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.goToClear.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToClear.IconChar = FontAwesome.Sharp.IconChar.Broom;
-            this.goToClear.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToClear.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToClear.IconSize = 32;
             this.goToClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -234,7 +235,7 @@ namespace NotarialOffice
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Image = ((System.Drawing.Image) (resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(5, 37);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(590, 167);
@@ -244,14 +245,14 @@ namespace NotarialOffice
             // 
             // goToLogIn
             // 
-            this.goToLogIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(185)))), ((int)(((byte)(142)))));
+            this.goToLogIn.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (211)))), ((int) (((byte) (185)))), ((int) (((byte) (142)))));
             this.goToLogIn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.goToLogIn.FlatAppearance.BorderSize = 0;
             this.goToLogIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToLogIn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.goToLogIn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToLogIn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.goToLogIn.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToLogIn.IconChar = FontAwesome.Sharp.IconChar.SignInAlt;
-            this.goToLogIn.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.goToLogIn.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToLogIn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToLogIn.IconSize = 32;
             this.goToLogIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -270,8 +271,8 @@ namespace NotarialOffice
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.label2.Location = new System.Drawing.Point(255, 324);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 30);
@@ -294,8 +295,8 @@ namespace NotarialOffice
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(54)))), ((int)(((byte)(32)))));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.label1.Location = new System.Drawing.Point(214, 248);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(172, 30);
@@ -315,16 +316,21 @@ namespace NotarialOffice
             this.mainToolTip.SetToolTip(this.loginBox, "Поле для ввода номера телефона или электронной почты");
             this.loginBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressValidate);
             // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
+            // 
             // AuthorizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(200)))), ((int)(((byte)(172)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (216)))), ((int) (((byte) (200)))), ((int) (((byte) (172)))));
             this.ClientSize = new System.Drawing.Size(600, 700);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Name = "AuthorizationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Авторизация";
@@ -332,10 +338,11 @@ namespace NotarialOffice
             this.headerPanel.PerformLayout();
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
-
         }
+
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
 
         #endregion
 
