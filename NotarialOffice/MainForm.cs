@@ -2,7 +2,6 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -74,8 +73,18 @@ namespace NotarialOffice
             if (Size != new Size(1000, 700))
                 Size = new Size(1000, 700);
             if (btSender.Name == "goToSettings")
+            {
+                myNameLabel.Visible = false;
+                label4.Visible = false;
                 Size = new Size(650, 700);
+            }
 
+            if (LastUsedButton.Name == "goToSettings")
+            {
+                myNameLabel.Visible = true;
+                label4.Visible = true;
+            }
+            
             mainLogo.Enabled = btSender.Name != "goToInfo";
 
             LastUsedButton.BackColor = Color.FromArgb(214, 184, 134);
@@ -155,16 +164,6 @@ namespace NotarialOffice
 
         public static DataTable GetData(string cmd)
         {
-            //var getData = new Thread(Aboba);
-            //getData.SetApartmentState(ApartmentState.STA);
-            //getData.IsBackground = true;
-            //DataTable abc = getData.Start();
-            //
-            //DataTable Aboba()
-            //{
-            //    
-            //}
-
             // Строка для подключения к базе данных
             var connectionString = $@"Data Source={DataSource};Initial Catalog={InitialCatalog};Integrated Security=True";
             
@@ -175,7 +174,7 @@ namespace NotarialOffice
             using (var connection = new SqlConnection(connectionString))
             {
                 // Открываем асинхронное соединение с базой данных
-                Task connectionTask = connection.OpenAsync();
+                var connectionTask = connection.OpenAsync();
                 Task.WaitAll(connectionTask);
                 
                 // Если соединение не установлено, то завершаем работу

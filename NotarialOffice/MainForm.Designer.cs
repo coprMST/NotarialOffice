@@ -77,7 +77,7 @@ namespace NotarialOffice
             this.logoLabel.AutoSize = true;
             this.logoLabel.Font = new System.Drawing.Font("Segoe UI", 18F, ((System.Drawing.FontStyle) ((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.logoLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (211)))), ((int) (((byte) (227)))), ((int) (((byte) (252)))));
-            this.logoLabel.Location = new System.Drawing.Point(3, 9);
+            this.logoLabel.Location = new System.Drawing.Point(12, 9);
             this.logoLabel.Name = "logoLabel";
             this.logoLabel.Size = new System.Drawing.Size(309, 32);
             this.logoLabel.TabIndex = 5;

@@ -57,8 +57,9 @@ namespace NotarialOffice
 
         private new void Update()
         {
-            workPanel.Enabled = false;
-
+            sortPanel.Enabled = false;
+            filtrationPanel.Enabled = false;
+            
             _filtrationType = $"where DT.DocumentTypeName like '%' + '{seacher.Text.Trim()}' + '%' or D.DocumentName like '%' + '{seacher.Text.Trim()}' + '%'";
             switch (filtrationBox.SelectedItem)
             {
@@ -79,6 +80,8 @@ namespace NotarialOffice
 
                 if (data.Rows.Count != 0)
                 {
+                    infoLabel.Visible = false;
+
                     for (var i = 0; i < data.Rows.Count; i++)
                     {
                         var pn = new Panel();
@@ -140,13 +143,18 @@ namespace NotarialOffice
 
                     servicesPanel.Visible = true;
                 }
+                else
+                {
+                    infoLabel.Visible = true;
+                }
             }
             catch
             {
                 // ignored
             }
 
-            workPanel.Enabled = true;
+            sortPanel.Enabled = true;
+            filtrationPanel.Enabled = true;
         }
 
         private void DataSort(object sender, EventArgs e)
@@ -167,6 +175,21 @@ namespace NotarialOffice
         private void filtrationBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Update();
+        }
+
+        private void seacher_TextChanged(object sender, EventArgs e)
+        {
+            Update();
+        }
+
+        private void setNullFiltration_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            filtrationBox.SelectedIndex = -1;
+        }
+
+        private void setNullSeacher_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            seacher.Text = string.Empty;
         }
     }
 }

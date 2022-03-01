@@ -35,21 +35,24 @@ namespace NotarialOffice
             this.goToSortDocumentZA = new FontAwesome.Sharp.IconButton();
             this.goToSortDocumentTypeZA = new FontAwesome.Sharp.IconButton();
             this.goToSortDocumentTypeAZ = new FontAwesome.Sharp.IconButton();
+            this.setNullFiltration = new System.Windows.Forms.LinkLabel();
+            this.setNullSeacher = new System.Windows.Forms.LinkLabel();
+            this.filtrationBox = new System.Windows.Forms.ComboBox();
+            this.seacherPanel = new System.Windows.Forms.Panel();
+            this.seacher = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.workPanel = new System.Windows.Forms.Panel();
+            this.infoLabel = new System.Windows.Forms.Label();
             this.sortPanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.filtrationPanel = new System.Windows.Forms.Panel();
-            this.filtrationBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.seacherPanel = new System.Windows.Forms.Panel();
-            this.seacher = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.servicesPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.seacherPanel.SuspendLayout();
             this.workPanel.SuspendLayout();
             this.sortPanel.SuspendLayout();
             this.filtrationPanel.SuspendLayout();
-            this.seacherPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // goToSortDocumentAZ
@@ -69,10 +72,10 @@ namespace NotarialOffice
             this.goToSortDocumentAZ.Name = "goToSortDocumentAZ";
             this.goToSortDocumentAZ.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.goToSortDocumentAZ.Size = new System.Drawing.Size(71, 61);
-            this.goToSortDocumentAZ.TabIndex = 6;
+            this.goToSortDocumentAZ.TabIndex = 5;
             this.goToSortDocumentAZ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToSortDocumentAZ.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.mainToolTip.SetToolTip(this.goToSortDocumentAZ, "Авторизоваться в системе");
+            this.mainToolTip.SetToolTip(this.goToSortDocumentAZ, "Сортировать по документам от А до Я");
             this.goToSortDocumentAZ.UseVisualStyleBackColor = false;
             this.goToSortDocumentAZ.Click += new System.EventHandler(this.DataSort);
             // 
@@ -93,10 +96,10 @@ namespace NotarialOffice
             this.goToSortDocumentZA.Name = "goToSortDocumentZA";
             this.goToSortDocumentZA.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.goToSortDocumentZA.Size = new System.Drawing.Size(71, 61);
-            this.goToSortDocumentZA.TabIndex = 7;
+            this.goToSortDocumentZA.TabIndex = 6;
             this.goToSortDocumentZA.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToSortDocumentZA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.mainToolTip.SetToolTip(this.goToSortDocumentZA, "Авторизоваться в системе");
+            this.mainToolTip.SetToolTip(this.goToSortDocumentZA, "Сортировать по документам от Я до А");
             this.goToSortDocumentZA.UseVisualStyleBackColor = false;
             this.goToSortDocumentZA.Click += new System.EventHandler(this.DataSort);
             // 
@@ -117,10 +120,10 @@ namespace NotarialOffice
             this.goToSortDocumentTypeZA.Name = "goToSortDocumentTypeZA";
             this.goToSortDocumentTypeZA.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.goToSortDocumentTypeZA.Size = new System.Drawing.Size(71, 61);
-            this.goToSortDocumentTypeZA.TabIndex = 11;
+            this.goToSortDocumentTypeZA.TabIndex = 8;
             this.goToSortDocumentTypeZA.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToSortDocumentTypeZA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.mainToolTip.SetToolTip(this.goToSortDocumentTypeZA, "Авторизоваться в системе");
+            this.mainToolTip.SetToolTip(this.goToSortDocumentTypeZA, "Сортировать по типу документов от Я до А");
             this.goToSortDocumentTypeZA.UseVisualStyleBackColor = false;
             this.goToSortDocumentTypeZA.Click += new System.EventHandler(this.DataSort);
             // 
@@ -141,15 +144,95 @@ namespace NotarialOffice
             this.goToSortDocumentTypeAZ.Name = "goToSortDocumentTypeAZ";
             this.goToSortDocumentTypeAZ.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.goToSortDocumentTypeAZ.Size = new System.Drawing.Size(71, 61);
-            this.goToSortDocumentTypeAZ.TabIndex = 10;
+            this.goToSortDocumentTypeAZ.TabIndex = 7;
             this.goToSortDocumentTypeAZ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.goToSortDocumentTypeAZ.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.mainToolTip.SetToolTip(this.goToSortDocumentTypeAZ, "Авторизоваться в системе");
+            this.mainToolTip.SetToolTip(this.goToSortDocumentTypeAZ, "Сортировать по типу документов от А до Я");
             this.goToSortDocumentTypeAZ.UseVisualStyleBackColor = false;
             this.goToSortDocumentTypeAZ.Click += new System.EventHandler(this.DataSort);
             // 
+            // setNullFiltration
+            // 
+            this.setNullFiltration.AutoSize = true;
+            this.setNullFiltration.DisabledLinkColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.setNullFiltration.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle) ((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.setNullFiltration.LinkColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.setNullFiltration.Location = new System.Drawing.Point(245, 11);
+            this.setNullFiltration.Name = "setNullFiltration";
+            this.setNullFiltration.Size = new System.Drawing.Size(88, 21);
+            this.setNullFiltration.TabIndex = 4;
+            this.setNullFiltration.TabStop = true;
+            this.setNullFiltration.Text = "Сбросить";
+            this.mainToolTip.SetToolTip(this.setNullFiltration, "Сбросить выбранный фильтр");
+            this.setNullFiltration.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.setNullFiltration_LinkClicked);
+            // 
+            // setNullSeacher
+            // 
+            this.setNullSeacher.AutoSize = true;
+            this.setNullSeacher.DisabledLinkColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.setNullSeacher.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle) ((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.setNullSeacher.LinkColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.setNullSeacher.Location = new System.Drawing.Point(305, 11);
+            this.setNullSeacher.Name = "setNullSeacher";
+            this.setNullSeacher.Size = new System.Drawing.Size(88, 21);
+            this.setNullSeacher.TabIndex = 2;
+            this.setNullSeacher.TabStop = true;
+            this.setNullSeacher.Text = "Сбросить";
+            this.mainToolTip.SetToolTip(this.setNullSeacher, "Сбросить введенную поисковую информацию");
+            this.setNullSeacher.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.setNullSeacher_LinkClicked);
+            // 
+            // filtrationBox
+            // 
+            this.filtrationBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.filtrationBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.filtrationBox.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.filtrationBox.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.filtrationBox.FormattingEnabled = true;
+            this.filtrationBox.Items.AddRange(new object[] {"По названию типа документа", "По названию документа"});
+            this.filtrationBox.Location = new System.Drawing.Point(13, 36);
+            this.filtrationBox.Name = "filtrationBox";
+            this.filtrationBox.Size = new System.Drawing.Size(320, 33);
+            this.filtrationBox.TabIndex = 3;
+            this.mainToolTip.SetToolTip(this.filtrationBox, "Выбрать фильтрацию для услуг");
+            this.filtrationBox.SelectedIndexChanged += new System.EventHandler(this.filtrationBox_SelectedIndexChanged);
+            // 
+            // seacherPanel
+            // 
+            this.seacherPanel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (210)))), ((int) (((byte) (190)))), ((int) (((byte) (157)))));
+            this.seacherPanel.Controls.Add(this.setNullSeacher);
+            this.seacherPanel.Controls.Add(this.seacher);
+            this.seacherPanel.Controls.Add(this.label5);
+            this.seacherPanel.Location = new System.Drawing.Point(12, 12);
+            this.seacherPanel.Name = "seacherPanel";
+            this.seacherPanel.Size = new System.Drawing.Size(412, 87);
+            this.seacherPanel.TabIndex = 33;
+            this.mainToolTip.SetToolTip(this.seacherPanel, "Поиск введенной информации");
+            // 
+            // seacher
+            // 
+            this.seacher.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.seacher.Location = new System.Drawing.Point(13, 36);
+            this.seacher.Name = "seacher";
+            this.seacher.Size = new System.Drawing.Size(380, 33);
+            this.seacher.TabIndex = 1;
+            this.mainToolTip.SetToolTip(this.seacher, "Поиск услуг по введенной информации");
+            this.seacher.TextChanged += new System.EventHandler(this.seacher_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.label5.Location = new System.Drawing.Point(8, 8);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(117, 25);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "Поисковик";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // workPanel
             // 
+            this.workPanel.Controls.Add(this.infoLabel);
             this.workPanel.Controls.Add(this.sortPanel);
             this.workPanel.Controls.Add(this.filtrationPanel);
             this.workPanel.Controls.Add(this.seacherPanel);
@@ -159,6 +242,18 @@ namespace NotarialOffice
             this.workPanel.Name = "workPanel";
             this.workPanel.Size = new System.Drawing.Size(800, 650);
             this.workPanel.TabIndex = 0;
+            // 
+            // infoLabel
+            // 
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.Font = new System.Drawing.Font("Segoe UI Black", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.infoLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.infoLabel.Location = new System.Drawing.Point(160, 300);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.Size = new System.Drawing.Size(468, 47);
+            this.infoLabel.TabIndex = 37;
+            this.infoLabel.Text = "Результатов не найдено.\r\n";
+            this.infoLabel.Visible = false;
             // 
             // sortPanel
             // 
@@ -201,25 +296,13 @@ namespace NotarialOffice
             // filtrationPanel
             // 
             this.filtrationPanel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (210)))), ((int) (((byte) (190)))), ((int) (((byte) (157)))));
+            this.filtrationPanel.Controls.Add(this.setNullFiltration);
             this.filtrationPanel.Controls.Add(this.filtrationBox);
             this.filtrationPanel.Controls.Add(this.label3);
             this.filtrationPanel.Location = new System.Drawing.Point(442, 12);
             this.filtrationPanel.Name = "filtrationPanel";
             this.filtrationPanel.Size = new System.Drawing.Size(346, 87);
             this.filtrationPanel.TabIndex = 34;
-            // 
-            // filtrationBox
-            // 
-            this.filtrationBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.filtrationBox.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.filtrationBox.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
-            this.filtrationBox.FormattingEnabled = true;
-            this.filtrationBox.Items.AddRange(new object[] {"По названию типа документа", "По названию документа", "none"});
-            this.filtrationBox.Location = new System.Drawing.Point(13, 36);
-            this.filtrationBox.Name = "filtrationBox";
-            this.filtrationBox.Size = new System.Drawing.Size(320, 33);
-            this.filtrationBox.TabIndex = 8;
-            this.filtrationBox.SelectedIndexChanged += new System.EventHandler(this.filtrationBox_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -232,36 +315,6 @@ namespace NotarialOffice
             this.label3.TabIndex = 31;
             this.label3.Text = "Фильтр поиска";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // seacherPanel
-            // 
-            this.seacherPanel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (210)))), ((int) (((byte) (190)))), ((int) (((byte) (157)))));
-            this.seacherPanel.Controls.Add(this.seacher);
-            this.seacherPanel.Controls.Add(this.label5);
-            this.seacherPanel.Location = new System.Drawing.Point(12, 12);
-            this.seacherPanel.Name = "seacherPanel";
-            this.seacherPanel.Size = new System.Drawing.Size(412, 87);
-            this.seacherPanel.TabIndex = 33;
-            // 
-            // seacher
-            // 
-            this.seacher.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.seacher.Location = new System.Drawing.Point(13, 36);
-            this.seacher.Name = "seacher";
-            this.seacher.Size = new System.Drawing.Size(380, 33);
-            this.seacher.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
-            this.label5.Location = new System.Drawing.Point(8, 8);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(117, 25);
-            this.label5.TabIndex = 32;
-            this.label5.Text = "Поисковик";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // servicesPanel
             // 
@@ -283,15 +336,21 @@ namespace NotarialOffice
             this.Name = "Documents";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Documents";
+            this.seacherPanel.ResumeLayout(false);
+            this.seacherPanel.PerformLayout();
             this.workPanel.ResumeLayout(false);
+            this.workPanel.PerformLayout();
             this.sortPanel.ResumeLayout(false);
             this.sortPanel.PerformLayout();
             this.filtrationPanel.ResumeLayout(false);
             this.filtrationPanel.PerformLayout();
-            this.seacherPanel.ResumeLayout(false);
-            this.seacherPanel.PerformLayout();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Label infoLabel;
+
+        private System.Windows.Forms.LinkLabel setNullFiltration;
+        private System.Windows.Forms.LinkLabel setNullSeacher;
 
         #endregion
 
