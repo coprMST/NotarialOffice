@@ -41,10 +41,11 @@ namespace NotarialOffice
             this.goToMaximizedApp = new FontAwesome.Sharp.IconButton();
             this.goToExitApp = new FontAwesome.Sharp.IconButton();
             this.menuPanel = new System.Windows.Forms.Panel();
-            this.goToSettings = new FontAwesome.Sharp.IconButton();
             this.goToEmployees = new FontAwesome.Sharp.IconButton();
             this.goToCustomers = new FontAwesome.Sharp.IconButton();
-            this.goToMyDocuments = new FontAwesome.Sharp.IconButton();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.goToSettings = new FontAwesome.Sharp.IconButton();
+            this.goToCreateMeeting = new FontAwesome.Sharp.IconButton();
             this.goToDocuments = new FontAwesome.Sharp.IconButton();
             this.goToInfo = new FontAwesome.Sharp.IconButton();
             this.mainLogo = new System.Windows.Forms.PictureBox();
@@ -225,10 +226,11 @@ namespace NotarialOffice
             // menuPanel
             // 
             this.menuPanel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (214)))), ((int) (((byte) (184)))), ((int) (((byte) (134)))));
-            this.menuPanel.Controls.Add(this.goToSettings);
             this.menuPanel.Controls.Add(this.goToEmployees);
             this.menuPanel.Controls.Add(this.goToCustomers);
-            this.menuPanel.Controls.Add(this.goToMyDocuments);
+            this.menuPanel.Controls.Add(this.iconButton1);
+            this.menuPanel.Controls.Add(this.goToSettings);
+            this.menuPanel.Controls.Add(this.goToCreateMeeting);
             this.menuPanel.Controls.Add(this.goToDocuments);
             this.menuPanel.Controls.Add(this.goToInfo);
             this.menuPanel.Controls.Add(this.mainLogo);
@@ -240,6 +242,81 @@ namespace NotarialOffice
             this.menuPanel.Size = new System.Drawing.Size(200, 650);
             this.menuPanel.TabIndex = 11;
             this.menuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.menuPanel_Paint);
+            // 
+            // goToEmployees
+            // 
+            this.goToEmployees.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.goToEmployees.Dock = System.Windows.Forms.DockStyle.Top;
+            this.goToEmployees.FlatAppearance.BorderSize = 0;
+            this.goToEmployees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.goToEmployees.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
+            this.goToEmployees.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.goToEmployees.IconChar = FontAwesome.Sharp.IconChar.AccessibleIcon;
+            this.goToEmployees.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.goToEmployees.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.goToEmployees.IconSize = 32;
+            this.goToEmployees.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.goToEmployees.Location = new System.Drawing.Point(2, 426);
+            this.goToEmployees.Name = "goToEmployees";
+            this.goToEmployees.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.goToEmployees.Size = new System.Drawing.Size(198, 60);
+            this.goToEmployees.TabIndex = 107;
+            this.goToEmployees.Text = "Сотрудники";
+            this.goToEmployees.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.goToEmployees.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToEmployees, "Открыть страницу сотрудников");
+            this.goToEmployees.UseVisualStyleBackColor = true;
+            this.goToEmployees.Visible = false;
+            // 
+            // goToCustomers
+            // 
+            this.goToCustomers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.goToCustomers.Dock = System.Windows.Forms.DockStyle.Top;
+            this.goToCustomers.FlatAppearance.BorderSize = 0;
+            this.goToCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.goToCustomers.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
+            this.goToCustomers.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.goToCustomers.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
+            this.goToCustomers.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.goToCustomers.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.goToCustomers.IconSize = 32;
+            this.goToCustomers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.goToCustomers.Location = new System.Drawing.Point(2, 366);
+            this.goToCustomers.Name = "goToCustomers";
+            this.goToCustomers.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.goToCustomers.Size = new System.Drawing.Size(198, 60);
+            this.goToCustomers.TabIndex = 106;
+            this.goToCustomers.Text = "Клиенты";
+            this.goToCustomers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.goToCustomers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToCustomers, "Открыть страницу клиентов");
+            this.goToCustomers.UseVisualStyleBackColor = true;
+            this.goToCustomers.Visible = false;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconButton1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.iconButton1.FlatAppearance.BorderSize = 0;
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
+            this.iconButton1.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.FileDownload;
+            this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 32;
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.Location = new System.Drawing.Point(2, 306);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.iconButton1.Size = new System.Drawing.Size(198, 60);
+            this.iconButton1.TabIndex = 105;
+            this.iconButton1.Text = "Мои встречи";
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.iconButton1, "Открыть страницу моих документов");
+            this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Visible = false;
             // 
             // goToSettings
             // 
@@ -266,83 +343,30 @@ namespace NotarialOffice
             this.goToSettings.UseVisualStyleBackColor = true;
             this.goToSettings.Click += new System.EventHandler(this.goToSettings_Click);
             // 
-            // goToEmployees
+            // goToCreateMeeting
             // 
-            this.goToEmployees.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.goToEmployees.Dock = System.Windows.Forms.DockStyle.Top;
-            this.goToEmployees.FlatAppearance.BorderSize = 0;
-            this.goToEmployees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToEmployees.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
-            this.goToEmployees.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
-            this.goToEmployees.IconChar = FontAwesome.Sharp.IconChar.AccessibleIcon;
-            this.goToEmployees.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
-            this.goToEmployees.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.goToEmployees.IconSize = 32;
-            this.goToEmployees.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToEmployees.Location = new System.Drawing.Point(2, 366);
-            this.goToEmployees.Name = "goToEmployees";
-            this.goToEmployees.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.goToEmployees.Size = new System.Drawing.Size(198, 60);
-            this.goToEmployees.TabIndex = 10;
-            this.goToEmployees.Text = "Сотрудники";
-            this.goToEmployees.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToEmployees.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.mainToolTip.SetToolTip(this.goToEmployees, "Открыть страницу сотрудников");
-            this.goToEmployees.UseVisualStyleBackColor = true;
-            this.goToEmployees.Visible = false;
-            this.goToEmployees.Click += new System.EventHandler(this.goToEmployees_Click);
-            // 
-            // goToCustomers
-            // 
-            this.goToCustomers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.goToCustomers.Dock = System.Windows.Forms.DockStyle.Top;
-            this.goToCustomers.FlatAppearance.BorderSize = 0;
-            this.goToCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToCustomers.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
-            this.goToCustomers.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
-            this.goToCustomers.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
-            this.goToCustomers.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
-            this.goToCustomers.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.goToCustomers.IconSize = 32;
-            this.goToCustomers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToCustomers.Location = new System.Drawing.Point(2, 306);
-            this.goToCustomers.Name = "goToCustomers";
-            this.goToCustomers.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.goToCustomers.Size = new System.Drawing.Size(198, 60);
-            this.goToCustomers.TabIndex = 9;
-            this.goToCustomers.Text = "Клиенты";
-            this.goToCustomers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToCustomers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.mainToolTip.SetToolTip(this.goToCustomers, "Открыть страницу клиентов");
-            this.goToCustomers.UseVisualStyleBackColor = true;
-            this.goToCustomers.Visible = false;
-            this.goToCustomers.Click += new System.EventHandler(this.goToCustomers_Click);
-            // 
-            // goToMyDocuments
-            // 
-            this.goToMyDocuments.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.goToMyDocuments.Dock = System.Windows.Forms.DockStyle.Top;
-            this.goToMyDocuments.FlatAppearance.BorderSize = 0;
-            this.goToMyDocuments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goToMyDocuments.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
-            this.goToMyDocuments.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
-            this.goToMyDocuments.IconChar = FontAwesome.Sharp.IconChar.FileDownload;
-            this.goToMyDocuments.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
-            this.goToMyDocuments.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.goToMyDocuments.IconSize = 32;
-            this.goToMyDocuments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToMyDocuments.Location = new System.Drawing.Point(2, 246);
-            this.goToMyDocuments.Name = "goToMyDocuments";
-            this.goToMyDocuments.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.goToMyDocuments.Size = new System.Drawing.Size(198, 60);
-            this.goToMyDocuments.TabIndex = 8;
-            this.goToMyDocuments.Text = "Мои записи";
-            this.goToMyDocuments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToMyDocuments.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.mainToolTip.SetToolTip(this.goToMyDocuments, "Открыть страницу моих документов");
-            this.goToMyDocuments.UseVisualStyleBackColor = true;
-            this.goToMyDocuments.Visible = false;
-            this.goToMyDocuments.Click += new System.EventHandler(this.goToMyDocuments_Click);
+            this.goToCreateMeeting.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.goToCreateMeeting.Dock = System.Windows.Forms.DockStyle.Top;
+            this.goToCreateMeeting.FlatAppearance.BorderSize = 0;
+            this.goToCreateMeeting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.goToCreateMeeting.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
+            this.goToCreateMeeting.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.goToCreateMeeting.IconChar = FontAwesome.Sharp.IconChar.FileDownload;
+            this.goToCreateMeeting.IconColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.goToCreateMeeting.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.goToCreateMeeting.IconSize = 32;
+            this.goToCreateMeeting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.goToCreateMeeting.Location = new System.Drawing.Point(2, 246);
+            this.goToCreateMeeting.Name = "goToCreateMeeting";
+            this.goToCreateMeeting.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.goToCreateMeeting.Size = new System.Drawing.Size(198, 60);
+            this.goToCreateMeeting.TabIndex = 8;
+            this.goToCreateMeeting.Text = "Записаться \r\nна встречу";
+            this.goToCreateMeeting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.goToCreateMeeting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.goToCreateMeeting, "Открыть страницу моих документов");
+            this.goToCreateMeeting.UseVisualStyleBackColor = true;
+            this.goToCreateMeeting.Click += new System.EventHandler(this.goToMyDocuments_Click);
             // 
             // goToDocuments
             // 
@@ -441,6 +465,8 @@ namespace NotarialOffice
             this.ResumeLayout(false);
         }
 
+        private FontAwesome.Sharp.IconButton iconButton1;
+
         #endregion
 
         private System.Windows.Forms.Panel headerPanel;
@@ -456,7 +482,7 @@ namespace NotarialOffice
         private FontAwesome.Sharp.IconButton goToSettings;
         private FontAwesome.Sharp.IconButton goToEmployees;
         private FontAwesome.Sharp.IconButton goToCustomers;
-        private FontAwesome.Sharp.IconButton goToMyDocuments;
+        private FontAwesome.Sharp.IconButton goToCreateMeeting;
         private FontAwesome.Sharp.IconButton goToDocuments;
         private FontAwesome.Sharp.IconButton goToInfo;
         private System.Windows.Forms.PictureBox mainLogo;

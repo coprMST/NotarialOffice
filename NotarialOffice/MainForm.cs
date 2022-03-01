@@ -40,7 +40,7 @@ namespace NotarialOffice
                 }
                 else if (CustomerId != null)
                 {
-                    goToMyDocuments.Visible = true;
+                    goToCreateMeeting.Visible = true;
                 }
             }
             else
@@ -215,6 +215,7 @@ namespace NotarialOffice
         private void goToMyDocuments_Click(object sender, EventArgs e)
         {
             ColorSwitcher(sender);
+            OpenChildForm(new MeetingsForm());
         }
 
         private void goToCustomers_Click(object sender, EventArgs e)
