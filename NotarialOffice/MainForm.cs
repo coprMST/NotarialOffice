@@ -36,11 +36,11 @@ namespace NotarialOffice
                     goToEmployees.Visible = true;
                     goToDocuments.Visible = false;
                     goToCustomers.Visible = true;
-                    goToEmployees.Visible = true;
                 }
                 else if (CustomerId != null)
                 {
                     goToCreateMeeting.Visible = true;
+                    goToMyMeetings.Visible = true;
                 }
             }
             else
@@ -160,6 +160,11 @@ namespace NotarialOffice
             EmployeeId = null;
             CustomerId = null;
             UserName = null;
+
+            if (LastUsedButton == goToInfo || LastUsedButton == goToDocuments) return;
+            
+            ColorSwitcher(goToInfo);
+            OpenChildForm(new InfoForm());
         }
 
         public static DataTable GetData(string cmd)
@@ -218,14 +223,25 @@ namespace NotarialOffice
             OpenChildForm(new MeetingsForm());
         }
 
+        private void goToMyMeetings_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void goToAdminMeetings_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
         private void goToCustomers_Click(object sender, EventArgs e)
         {
             ColorSwitcher(sender);
+            OpenChildForm(new CustomersForm());
         }
 
         private void goToEmployees_Click(object sender, EventArgs e)
         {
-            ColorSwitcher(sender);
+            throw new System.NotImplementedException();
         }
     }
 }

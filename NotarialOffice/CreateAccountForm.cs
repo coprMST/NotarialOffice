@@ -124,7 +124,7 @@ namespace NotarialOffice
             else if (IsNullOrEmpty(dob))
                 MessageBox.Show(@"Для регистрации введите дату рождения", @"Примечание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else if (!DateTime.TryParse(dob, out var date))
-                MessageBox.Show(@"Для регистрации введите корректно дату рождения", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"Для регистрации введите коррекtтно дату рождения", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if ((date.AddYears(18) - DateTime.Today).TotalDays >= 0)
                 MessageBox.Show(@"Для регистрации Вы должны быть совершеннолетим", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (IsNullOrEmpty(topPassword) && IsNullOrEmpty(bottomPassword))
