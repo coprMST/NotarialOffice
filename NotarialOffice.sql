@@ -31,7 +31,7 @@ go
 create table [dbo].[Employees] (
 	[EmployeeID] uniqueidentifier primary key default newid(),
 	[AccountID] uniqueidentifier foreign key references [dbo].[Accounts]([AccountID]) on delete cascade on update cascade not null,
-	[PositionID] integer foreign key references [dbo].[Positions]([PositionID]) on delete no action on update cascade not null,
+	[PositionID] integer foreign key references [dbo].[Positions]([PositionID]) on delete no action on update cascade default 1 not null,
 	[LastName] varchar(800) not null,
     [FirstName] varchar(800) not null,
 	[MiddleName] varchar(800) null,
@@ -71,6 +71,7 @@ create table [dbo].[Meetings] (
 	[MeetingID] integer identity primary key,
 	[CustomerID] uniqueidentifier foreign key references [dbo].[Customers]([CustomerID]) on delete cascade on update cascade not null,
 	[DateTime] datetime2(0) not null,
+	[Comment] varchar(max) null,
 )
 go
 
@@ -164,16 +165,48 @@ as
 	select* from @boolean
 go
 
+-- Хранимая процедура, добавляющая новую встречу (для записи на встречу)
+create procedure [dbo].[AddNewMeeting] (@customerID uniqueidentifier, @datetime datetime2, @comment varchar(800))
+as
+	insert into Meetings(CustomerID, [DateTime], [Comment])
+	values (@customerID, @datetime, @comment)
+go
+
+create procedure [dbo].[MoveCustomerToEmployee] (@accountID uniqueidentifier)
+as
+	declare @lastName varchar(800), @firstName varchar(800), @middleName varchar(800), @dob date
+
+	set xact_abort on	
+	begin tran
+	select @lastName = (select LastName from Customers where AccountID = @accountID)
+	select @firstName = (select FirstName from Customers where AccountID = @accountID)
+	select @middleName = (select MiddleName from Customers where AccountID = @accountID)
+	select @dob = (select DateOfBith from Customers where AccountID = @accountID)
+
+	delete from Customers where AccountID = @accountID
+	
+	insert into Employees(AccountID, LastName, FirstName, MiddleName, DateOfBith)
+	values (@accountID, @lastName, @firstName, @middleName, @dob) 
+	commit tran
+go
+
+exec [dbo].[MoveCustomerToEmployee] '2ea14334-668f-4c43-9ceb-6bf330795969'
+go
 
 
 
+79481595325 Sy10G40rx7SCG0vc3j
+
+insert into [dbo].[Positions] ([PositionName], [Salary])
+values ('Standart', '0')
+go
 
 exec [dbo].[AddNewCustomer] 'Дрягина', 'Вера', 'Семеновна', '20.06.1956 0:00:00', '79597218076', 'vera7606@hotmail.com', 'Rj58K37vo1GLY7sk8x'
 exec [dbo].[AddNewCustomer] 'Никишов', 'Иван', 'Юрьевич', '05.04.1984 0:00:00', '79789641998', 'ivan22021996@ya.ru', 'Xw06B19br3FVP7fb0n'
 exec [dbo].[AddNewCustomer] 'Каипова', 'Вероника', 'Филипповна', '31.12.1961 0:00:00', '79202423428', 'veronika28111973@mail.ru', 'Fw74N29et3OSI8bf2q'
 exec [dbo].[AddNewCustomer] 'Гаврикова', 'Алла', 'Давидович', '13.04.1988 0:00:00', '79575882751', 'alla.gavrikova@gmail.com', 'Mr42A43gr7TRQ9qr7e'
 exec [dbo].[AddNewCustomer] 'Теплых', 'Кирилл', 'Александрович', '29.03.1972 0:00:00', '79272433062', 'kirill1984@hotmail.com', 'Ni19F71px0ONY4ia5u'
-exec [dbo].[AddNewCustomer] 'Лысов', 'Адам', 'Викторович', '11.02.1982 0:00:00', '79481595325', 'adam1670@gmail.com', 'Sy10G40rx7SCG0vc3j'
+exec [dbo].[AddNewCustomer] 'Лысов', 'Адам', 'Викторович', '11.02.1982 0:00:00', '79481595325', 'adam1670@gmail.com', 'Sy10G40rx7SCG0vc3j' ------------------------
 exec [dbo].[AddNewCustomer] 'Кияк', 'Алина', 'Игнатьевна', '17.06.1987 0:00:00', '79135826412', 'alina1129@gmail.com', 'En98K21fv2HXC9em4i'
 exec [dbo].[AddNewCustomer] 'Исмайлова', 'Сюзанна', 'Феоктистовна', '11.02.1966 0:00:00', '79367467647', 'syuzanna06071994@rambler.ru', 'Wn20F81yh4CIY6vp0u'
 exec [dbo].[AddNewCustomer] 'Жутов', 'Петр', 'Егорович', '04.06.1952 0:00:00', '79082985993', 'petr25041984@yandex.ru', 'Uv12E46xp2COI7cn2z'
@@ -204,7 +237,7 @@ exec [dbo].[AddNewCustomer] 'Бессмертная', 'Марина', 'Феок�
 exec [dbo].[AddNewCustomer] 'Мещеряков', 'Филипп', 'Дмитриевич', '30.10.1971 0:00:00', '79644207560', 'filipp1981@yandex.ru', 'Sv14D82re9SVI2gl0f'
 exec [dbo].[AddNewCustomer] 'Овсова', 'Юлиана', 'Семеновна', '14.07.1972 0:00:00', '79604363814', 'yuliana.ovsova@yandex.ru', 'Js82B38bb9ZDS9np0f'
 exec [dbo].[AddNewCustomer] 'Богоносцева', 'Марианна', 'Феликсовна', '15.12.1953 0:00:00', '79175744290', 'marianna1967@ya.ru', 'Ld74V75rq6BWN4cl7w'
-exec [dbo].[AddNewCustomer] 'Афонин', 'Антон', 'Валерьевич', '26.11.1979 0:00:00', '79775132647', 'anton86@ya.ru', 'De28E71va8VQE2yu2r'
+exec [dbo].[AddNewCustomer] 'Афонин', 'Антон', 'Валерьевич', '26.11.1979 0:00:00', '79775132647', 'anton86@ya.ru', 'De28E71va8VQE2yu2r' 
 exec [dbo].[AddNewCustomer] 'Ёлшина', 'Марианна', 'Васильевна', '13.09.1963 0:00:00', '79588471023', 'marianna1990@outlook.com', 'Bn56F40cl7POV7nc9e'
 exec [dbo].[AddNewCustomer] 'Лигачёва', 'Оксана', 'Макаровна', '04.01.1965 0:00:00', '79517205234', 'oksana1228@outlook.com', 'Ot68N88zx6PRV7lv0p'
 exec [dbo].[AddNewCustomer] 'Шашлова', 'Ася', 'Макаровна', '06.08.1977 0:00:00', '79517212270', 'asya1991@hotmail.com', 'Al15T14hz8RDA6ad5k'
