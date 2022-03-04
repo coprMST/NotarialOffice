@@ -36,11 +36,11 @@ namespace NotarialOffice
                     goToEmployees.Visible = true;
                     goToDocuments.Visible = false;
                     goToCustomers.Visible = true;
+                    goToAdminMeetings.Visible = true;
                 }
                 else if (CustomerId != null)
                 {
                     goToCreateMeeting.Visible = true;
-                    goToMyMeetings.Visible = true;
                 }
             }
             else
@@ -62,8 +62,6 @@ namespace NotarialOffice
             workPanel.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            
-            //MessageBox.Show(Environment.MachineName.ToString());
         }
 
         private void ColorSwitcher(object sender)
@@ -225,12 +223,13 @@ namespace NotarialOffice
 
         private void goToMyMeetings_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         private void goToAdminMeetings_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            ColorSwitcher(sender);
+            OpenChildForm(new MeetingDates());
         }
 
         private void goToCustomers_Click(object sender, EventArgs e)

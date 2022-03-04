@@ -36,6 +36,10 @@
     <ApplicationIcon>MainIco.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EasyDox, Version=2.0.39.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\EasyDox.2.0.39\lib\EasyDox.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FontAwesome.Sharp, Version=5.15.4.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f">
       <HintPath>..\packages\FontAwesome.Sharp.5.15.4\lib\net472\FontAwesome.Sharp.dll</HintPath>
       <Private>True</Private>
@@ -99,6 +103,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MeetingDates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MeetingDates.Designer.cs">
+      <DependentUpon>MeetingDates.cs</DependentUpon>
+    </Compile>
     <Compile Include="MeetingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeetingDates.resx">
+      <DependentUpon>MeetingDates.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MeetingsForm.resx">
       <DependentUpon>MeetingsForm.cs</DependentUpon>

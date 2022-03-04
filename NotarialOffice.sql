@@ -1,4 +1,4 @@
-﻿create database [NotarialOffice]
+﻿create database [NotarialOffice2]
 go
 
 use [NotarialOffice]
@@ -70,7 +70,7 @@ go
 create table [dbo].[Meetings] (
 	[MeetingID] integer identity primary key,
 	[CustomerID] uniqueidentifier foreign key references [dbo].[Customers]([CustomerID]) on delete cascade on update cascade not null,
-	[DateTime] datetime2(0) not null,
+	[DateTime] datetime2(0) unique not null,
 	[Comment] varchar(max) null,
 )
 go
@@ -92,9 +92,6 @@ for insert, update
 as 
 	if exists (select AccountID from Employees where AccountID = (select AccountID from inserted))
 		rollback transaction
-go
-
-select [CustomerID], [DateTime] from [dbo].[Meetings] where [DateTime] > sysdatetime()
 go
 
 
@@ -166,10 +163,15 @@ as
 go
 
 -- Хранимая процедура, добавляющая новую встречу (для записи на встречу)
-create procedure [dbo].[AddNewMeeting] (@customerID uniqueidentifier, @datetime datetime2, @comment varchar(800))
+alter procedure [dbo].[AddNewMeeting] (@customerID uniqueidentifier, @datetime datetime2, @comment varchar(800))
 as
+	declare @IDs table(Id integer)
+
 	insert into Meetings(CustomerID, [DateTime], [Comment])
+	output inserted.MeetingID into @IDs(Id)
 	values (@customerID, @datetime, @comment)
+
+	select (select top 1 ID from @IDs), LastName, FirstName, MiddleName from Customers where CustomerID = @customerID
 go
 
 create procedure [dbo].[MoveCustomerToEmployee] (@accountID uniqueidentifier)
@@ -190,12 +192,26 @@ as
 	commit tran
 go
 
-exec [dbo].[MoveCustomerToEmployee] '2ea14334-668f-4c43-9ceb-6bf330795969'
+create procedure [dbo].[MoveEmployeeToCustomer] (@accountID uniqueidentifier)
+as
+	declare @lastName varchar(800), @firstName varchar(800), @middleName varchar(800), @dob date
+
+	set xact_abort on	
+	begin tran
+	select @lastName = (select LastName from Employees where AccountID = @accountID)
+	select @firstName = (select FirstName from Employees where AccountID = @accountID)
+	select @middleName = (select MiddleName from Employees where AccountID = @accountID)
+	select @dob = (select DateOfBith from Employees where AccountID = @accountID)
+
+	delete from Employees where AccountID = @accountID
+	
+	insert into Customers(AccountID, LastName, FirstName, MiddleName, DateOfBith)
+	values (@accountID, @lastName, @firstName, @middleName, @dob) 
+	commit tran
 go
 
 
 
-79481595325 Sy10G40rx7SCG0vc3j
 
 insert into [dbo].[Positions] ([PositionName], [Salary])
 values ('Standart', '0')
@@ -206,7 +222,7 @@ exec [dbo].[AddNewCustomer] 'Никишов', 'Иван', 'Юрьевич', '05.
 exec [dbo].[AddNewCustomer] 'Каипова', 'Вероника', 'Филипповна', '31.12.1961 0:00:00', '79202423428', 'veronika28111973@mail.ru', 'Fw74N29et3OSI8bf2q'
 exec [dbo].[AddNewCustomer] 'Гаврикова', 'Алла', 'Давидович', '13.04.1988 0:00:00', '79575882751', 'alla.gavrikova@gmail.com', 'Mr42A43gr7TRQ9qr7e'
 exec [dbo].[AddNewCustomer] 'Теплых', 'Кирилл', 'Александрович', '29.03.1972 0:00:00', '79272433062', 'kirill1984@hotmail.com', 'Ni19F71px0ONY4ia5u'
-exec [dbo].[AddNewCustomer] 'Лысов', 'Адам', 'Викторович', '11.02.1982 0:00:00', '79481595325', 'adam1670@gmail.com', 'Sy10G40rx7SCG0vc3j' ------------------------
+exec [dbo].[AddNewCustomer] 'Лысов', 'Адам', 'Викторович', '11.02.1982 0:00:00', '79481595325', 'adam1670@gmail.com', 'Sy10G40rx7SCG0vc3j' 
 exec [dbo].[AddNewCustomer] 'Кияк', 'Алина', 'Игнатьевна', '17.06.1987 0:00:00', '79135826412', 'alina1129@gmail.com', 'En98K21fv2HXC9em4i'
 exec [dbo].[AddNewCustomer] 'Исмайлова', 'Сюзанна', 'Феоктистовна', '11.02.1966 0:00:00', '79367467647', 'syuzanna06071994@rambler.ru', 'Wn20F81yh4CIY6vp0u'
 exec [dbo].[AddNewCustomer] 'Жутов', 'Петр', 'Егорович', '04.06.1952 0:00:00', '79082985993', 'petr25041984@yandex.ru', 'Uv12E46xp2COI7cn2z'
@@ -262,7 +278,7 @@ exec [dbo].[AddNewCustomer] 'Гордеева', 'Анна', 'Николаевн�
 exec [dbo].[AddNewCustomer] 'Сафиюлина', 'Анфиса', 'Якововна', '23.10.1974 0:00:00', '79929218095', 'anfisa.safiyulina@outlook.com', 'Jq47A51hl2FZD4cr0n'
 exec [dbo].[AddNewCustomer] 'Драке', 'Рада', 'Константиновна', '05.11.1955 0:00:00', '79316264857', 'rada16121981@hotmail.com', 'Xm98O00kn6FZC2rn8f'
 exec [dbo].[AddNewCustomer] 'Ефремовича', 'Ксения', 'Якововна', '11.11.1959 0:00:00', '79229839950', 'kseniya14121990@outlook.com', 'Hb54Z21si3VTJ8mm9k'
-exec [dbo].[AddNewCustomer] 'Матвиенко', 'Юлиана', 'Феоктистовна', '21.03.1992 0:00:00', '79595255147', 'yuliana9454@mail.ru', 'Xs91R62id7LXG4wf0k'
+exec [dbo].[AddNewCustomer] 'Матвиенко', 'Юлиана', 'Феоктистовна', '21.03.1992 0:00:00', '79595255147', 'yuliana9454@mail.ru', 'Xs91R62id7LXG4wf0k' ---------------
 exec [dbo].[AddNewCustomer] 'Тевосова', 'Марина', 'Якововна', '25.06.1954 0:00:00', '79817262285', 'marina7413@hotmail.com', 'Zp43T07xw1PSR1ah4i'
 exec [dbo].[AddNewCustomer] 'Кабицин', 'Юлиан', 'Михаилович', '24.02.1996 0:00:00', '79889302376', 'yulian1964@yandex.ru', 'Ws78Z98lo2NQL0xk2l'
 exec [dbo].[AddNewCustomer] 'Яглинцев', 'Александр', 'Александрович', '20.05.1970 0:00:00', '79948461336', 'aleksandr2381@outlook.com', 'Fc97J15at7GDK9en3g'
@@ -364,3 +380,6 @@ values
 ('10', 'Договор займа (от 1 млн. руб. до 10 млн. руб.)', '13800', '0.2', null, 'К нотариусу должны явиться стороны и предъявить паспорта сторон. Стороны договора сообщают нотариусу следующую информацию: сумма займа, срок займа и порядок возврата денежных средств. Можно предусмотреть возможность досрочного возврата денег, а также штрафные санкции в случае, когда заемщик не возвращает деньги в срок. Сумма займа может быть предоставлена под проценты, в этом случае в договоре отдельно оговаривается порядок выплаты процентов. Договор займа может быть заключен с условием использования заемщиком полученных средств на определенные цели (целевой заем).'),
 ('10', 'Договор займа (от 10 млн. руб.)', '31800', '0.1', null, 'К нотариусу должны явиться стороны и предъявить паспорта сторон. Стороны договора сообщают нотариусу следующую информацию: сумма займа, срок займа и порядок возврата денежных средств. Можно предусмотреть возможность досрочного возврата денег, а также штрафные санкции в случае, когда заемщик не возвращает деньги в срок. Сумма займа может быть предоставлена под проценты, в этом случае в договоре отдельно оговаривается порядок выплаты процентов. Договор займа может быть заключен с условием использования заемщиком полученных средств на определенные цели (целевой заем).')
 go
+
+--exec [dbo].[MoveCustomerToEmployee] '3fb1018d-3bcb-4d88-ba4a-df46ae6503bc'
+--go

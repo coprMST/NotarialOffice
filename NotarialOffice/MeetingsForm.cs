@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Windows.Forms;
+using EasyDox;
 using static System.String;
 
 namespace NotarialOffice
@@ -24,7 +27,13 @@ namespace NotarialOffice
         {
             var date = dateBox.Text;
 
-            if (date.Length != 10) return;
+            if (date.Length != 10)
+            {
+                timeBox.Enabled = false;
+                commentBox.Enabled = false;
+                goToCreate.Enabled = false;
+                return;
+            }
             
             if (!DateTime.TryParse(date, out var tempTime) )
             {
@@ -86,15 +95,37 @@ namespace NotarialOffice
         
         private void goToCreate_Click(object sender, EventArgs e)
         {
-            MainForm.GetData($"exec [dbo].[AddNewMeeting] '{MainForm.CustomerId}', '{dateBox.Text + " " + timeBox.SelectedItem}', '{commentBox.Text}'");
-
-            dateBox.Text = "";
-            timeBox.Enabled = false;
-            timeBox.SelectedIndex = -1;
-            commentBox.Enabled = false;
-            goToCreate.Enabled = false;
+            try
+            { 
+                var data = MainForm.GetData($"exec [dbo].[AddNewMeeting] '{MainForm.CustomerId}', '{dateBox.Text + " " + timeBox.SelectedItem}', '{commentBox.Text}'");
             
-            MessageBox.Show(@"Вы были успешно записаны на встречу с нотариусом", @"Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(@"Вы были успешно записаны на встречу с нотариусом", @"Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                var talonId = data.Rows[0][0].ToString();
+                var name = data.Rows[0][1] + " " +  data.Rows[0][2];
+                if (data.Rows[0][2] != DBNull.Value)
+                    name += " " + data.Rows[0][3];
+                
+                var fieldValues = new Dictionary <string, string> {
+                    {"Номер записи", talonId},
+                    {"ФИО",  name},
+                    {"Дата 1",  dateBox.Text + " " + timeBox.SelectedItem},
+                    {"Дата 2", DateTime.Now.ToString("f")},
+                };
+
+                var engine = new Engine();
+                engine.Merge(Application.StartupPath + @"\\template.docx", fieldValues, Application.StartupPath + $@"\\Talon_{talonId}.docx");
+                
+                dateBox.Text = "";
+                timeBox.Enabled = false;
+                timeBox.SelectedIndex = -1;
+                commentBox.Enabled = false;
+                goToCreate.Enabled = false;
+            }
+            catch
+            {
+                MessageBox.Show(@"Не удалось записаться на встречу с нотариусом", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
