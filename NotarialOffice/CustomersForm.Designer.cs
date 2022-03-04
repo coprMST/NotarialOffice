@@ -52,13 +52,13 @@ namespace NotarialOffice
             this.customersTable.AllowUserToResizeColumns = false;
             this.customersTable.AllowUserToResizeRows = false;
             this.customersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.customersTable.Location = new System.Drawing.Point(28, 171);
+            this.customersTable.Location = new System.Drawing.Point(18, 179);
             this.customersTable.MultiSelect = false;
             this.customersTable.Name = "customersTable";
             this.customersTable.ReadOnly = true;
             this.customersTable.RowHeadersVisible = false;
             this.customersTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.customersTable.Size = new System.Drawing.Size(420, 459);
+            this.customersTable.Size = new System.Drawing.Size(670, 459);
             this.customersTable.TabIndex = 0;
             // 
             // goToDelete
@@ -74,7 +74,7 @@ namespace NotarialOffice
             this.goToDelete.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToDelete.IconSize = 32;
             this.goToDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToDelete.Location = new System.Drawing.Point(468, 105);
+            this.goToDelete.Location = new System.Drawing.Point(554, 20);
             this.goToDelete.Name = "goToDelete";
             this.goToDelete.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.goToDelete.Size = new System.Drawing.Size(234, 60);
@@ -99,14 +99,15 @@ namespace NotarialOffice
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 32;
             this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(468, 171);
+            this.iconButton1.Location = new System.Drawing.Point(507, 86);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.iconButton1.Size = new System.Drawing.Size(281, 77);
             this.iconButton1.TabIndex = 114;
-            this.iconButton1.Text = "Перевести клиента\r\nв группу сотрудников";
+            this.iconButton1.Text = "Перевести клиента \r\nв группу сотрудников";
             this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mainToolTip.SetToolTip(this.iconButton1, "Перевести клиента в группу сотрудников с подтверждением");
             this.iconButton1.UseVisualStyleBackColor = false;
             this.iconButton1.Click += new System.EventHandler(this.GoToMove);
             // 
@@ -116,7 +117,7 @@ namespace NotarialOffice
             this.seacherPanel.Controls.Add(this.setNullSeacher);
             this.seacherPanel.Controls.Add(this.seacher);
             this.seacherPanel.Controls.Add(this.label5);
-            this.seacherPanel.Location = new System.Drawing.Point(28, 78);
+            this.seacherPanel.Location = new System.Drawing.Point(18, 76);
             this.seacherPanel.Name = "seacherPanel";
             this.seacherPanel.Size = new System.Drawing.Size(420, 87);
             this.seacherPanel.TabIndex = 115;
@@ -163,11 +164,11 @@ namespace NotarialOffice
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
-            this.label2.Location = new System.Drawing.Point(28, 9);
+            this.label2.Location = new System.Drawing.Point(18, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(484, 47);
+            this.label2.Size = new System.Drawing.Size(327, 47);
             this.label2.TabIndex = 116;
-            this.label2.Text = "Данные клиентов системы";
+            this.label2.Text = "Данные клиентов";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CustomersForm

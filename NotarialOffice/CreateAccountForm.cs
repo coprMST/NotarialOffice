@@ -145,7 +145,6 @@ namespace NotarialOffice
                 try
                 {
                     var dataTable = MainForm.GetData($"exec [dbo].[CheckPhoneAndEmail] '{phone}', '{email}'");
-
                     if (dataTable.Rows[0][0].ToString() == "True")
                     {
                         MessageBox.Show(@"Вы ввели существующий номер телефона и/или электронную почту", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
