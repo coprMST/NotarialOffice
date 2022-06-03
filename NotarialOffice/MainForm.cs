@@ -2,8 +2,12 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.String;
 
 namespace NotarialOffice
 {
@@ -23,8 +27,27 @@ namespace NotarialOffice
         public MainForm()
         {
             InitializeComponent();
+         
+            Log.Write("DEBUG", "Программа запущена");
+            Application.ApplicationExit += OnApplicationExit;
+            
             LastUsedButton = goToInfo;
 
+            if (File.Exists("temp"))
+                AutoAuthUser();
+            EnableUserPanel();
+            
+            ColorSwitcher(goToInfo);
+            OpenChildForm(new InfoForm());
+        }
+
+        private static void OnApplicationExit(object sender, EventArgs e)
+        {
+            Log.Write("DEBUG", "Программа закрыта");
+        }
+        
+        private void EnableUserPanel()
+        {
             if (AccountId != null)
             {
                 goToLogIn.Visible = false;
@@ -45,12 +68,97 @@ namespace NotarialOffice
             }
             else
             {
+                goToCreateMeeting.Visible = false;
                 goToLogIn.Visible = true;
                 logInPanel.Visible = false;
+                goToEmployees.Visible = false;
+                goToCustomers.Visible = false;
+                goToAdminMeetings.Visible = false;
+            }
+        }
+        
+        private static void AutoAuthUser()
+        {
+            var login = Empty;
+            var password = Empty;
+            DataTable data;
+
+            try
+            {
+                using (var sr = new StreamReader("temp", Encoding.Default))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        login = line.Split(' ')[0];
+                        password = line.Split(' ')[1];
+                    }
+                }
+                
+                if (Regex.IsMatch(login, ".+[@].+[.].+"))
+                {
+                    data = GetData($"exec [dbo].[GetCustomer] null, '{login}', '{password}'");
+                    
+                    if (data.Rows.Count == 0)
+                    {
+                        data = GetData($"exec [dbo].[GetEmployee] null, '{login}', '{password}'");
+                        if (data.Rows.Count == 0)
+                        {
+                            File.Delete(@"temp");
+                        } 
+                        else 
+                            SuccessfulAuthorization("employee");
+                    }
+                    else 
+                        SuccessfulAuthorization("customer");
+                }
+                else if (long.TryParse(login, out _))
+                {
+                    data = GetData($"exec [dbo].[GetCustomer] '{login}', null, '{password}'");
+                    if (data.Rows.Count == 0)
+                    {
+                        data = GetData($"exec [dbo].[GetEmployee] '{login}', null, '{password}'");
+                        if (data.Rows.Count == 0)
+                        {
+                            File.Delete(@"temp");
+                        }
+                        else
+                            SuccessfulAuthorization("employee");
+                    }
+                    else
+                        SuccessfulAuthorization("customer");
+                }
+            }
+            catch
+            {
+                // ignored
             }
 
-            ColorSwitcher(goToInfo);
-            OpenChildForm(new InfoForm());
+            void SuccessfulAuthorization(string user)
+            {
+                AccountId = data.Rows[0][0].ToString();
+                UserName = data.Rows[0][2] + " " + data.Rows[0][3].ToString().Substring(0, 1) + ".";
+                if (data.Rows[0][4] != DBNull.Value)
+                    UserName += data.Rows[0][4].ToString().Substring(0, 1) + ".";
+                
+                switch (user)
+                {
+                    case "customer": CustomerId = data.Rows[0][1].ToString(); break;
+                    case "employee": EmployeeId = data.Rows[0][1].ToString(); break;
+                }
+                
+                Log.Write("INFO", $"Автоматический вход был осуществлен пользователем {UserName}; идентификатор аккаунта: {AccountId}");
+            }
+        }
+        
+        public static void CreateUserFile(string login, string password)
+        {
+            const string path = "temp";
+            var fs = File.Open(path, File.Exists(path) ? FileMode.Truncate : FileMode.OpenOrCreate);
+            File.SetAttributes(path, FileAttributes.Hidden | FileAttributes.Compressed);
+            using (var sw = new StreamWriter(fs, Encoding.Default))
+                sw.WriteLine("{0} {1}", login, password);
+            fs.Close();
         }
 
         private void OpenChildForm(Form childForm)
@@ -70,6 +178,7 @@ namespace NotarialOffice
 
             if (Size != new Size(1000, 700))
                 Size = new Size(1000, 700);
+            
             if (btSender.Name == "goToSettings")
             {
                 myNameLabel.Visible = false;
@@ -147,6 +256,8 @@ namespace NotarialOffice
             EmployeeId = null;
             CustomerId = null;
             UserName = null;
+            
+            Log.Write("INFO", "Осуществлен переход на окно авторизации");
         }
 
         private void goToLogOut_Click(object sender, EventArgs e)
@@ -158,11 +269,15 @@ namespace NotarialOffice
             EmployeeId = null;
             CustomerId = null;
             UserName = null;
+            File.Delete(@"temp");
+            EnableUserPanel();
 
             if (LastUsedButton == goToInfo || LastUsedButton == goToDocuments) return;
             
             ColorSwitcher(goToInfo);
             OpenChildForm(new InfoForm());
+
+            Log.Write("INFO", $"Выход из учетной записи был осуществлен пользователем {UserName}; идентификатор аккаунта: {AccountId}");
         }
 
         public static DataTable GetData(string cmd)
@@ -201,47 +316,93 @@ namespace NotarialOffice
         {
             ColorSwitcher(goToInfo);
             OpenChildForm(new InfoForm());
+            
+            Log.Write("INFO", "Осуществлен переход на информационную страницу");
         }
 
         private void goToDocuments_Click(object sender, EventArgs e)
         {
             ColorSwitcher(sender);
             OpenChildForm(new Documents());
+            
+            Log.Write("INFO", "Осуществлен переход на страницу документов");
         }
 
         private void goToSettings_Click(object sender, EventArgs e)
         {
             ColorSwitcher(sender);
             OpenChildForm(new SettingsForm());
+            
+            Log.Write("INFO", "Осуществлен переход на страницу настроек приложения");
         }
 
         private void goToMyDocuments_Click(object sender, EventArgs e)
         {
             ColorSwitcher(sender);
             OpenChildForm(new MeetingsForm());
+            
+            Log.Write("INFO", "Осуществлен переход на страницу моих документов");
         }
 
         private void goToMyMeetings_Click(object sender, EventArgs e)
         {
-            
+            Log.Write("INFO", "Осуществлен переход на страницу встреч клиента");
         }
 
         private void goToAdminMeetings_Click(object sender, EventArgs e)
         {
             ColorSwitcher(sender);
             OpenChildForm(new MeetingDates());
+            
+            Log.Write("INFO", "Осуществлен переход на страницу встреч для администратора");
         }
 
         private void goToCustomers_Click(object sender, EventArgs e)
         {
             ColorSwitcher(sender);
             OpenChildForm(new CustomersForm());
+            
+            Log.Write("INFO", "Осуществлен переход на страницу списка клиентов");
         }
 
         private void goToEmployees_Click(object sender, EventArgs e)
         {
             ColorSwitcher(sender);
             OpenChildForm(new EmployeesForm());
+            
+            Log.Write("INFO", "Осуществлен переход на страницу списка сотрудников");
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            ColorSwitcher(sender);
+            OpenChildForm(new EmployeesForm());
+            
+            Log.Write("INFO", "Осуществлен переход на страницу профиля");
+        }
+    }
+}
+
+public static class Log
+{
+    private static readonly object Sync = new object();
+    public static void Write(string loggingLevel, string msg)
+    {
+        try
+        {
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs");
+            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+            var filename = Path.Combine(path, $"{DateTime.Now:dd.MM.yyy}.log");
+            var fullText = $"[{DateTime.Now:HH:mm:ss.fff}] [{loggingLevel}] {msg}\r";
+            lock (Sync)
+            {
+                File.AppendAllText(filename, fullText, Encoding.GetEncoding("Windows-1251"));
+            }
+            File.SetAttributes(filename, FileAttributes.Compressed);
+        }
+        catch
+        {
+            // ignored
         }
     }
 }

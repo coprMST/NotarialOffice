@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -27,7 +28,7 @@ namespace NotarialOffice
             SetRoundedShape(goToSortDocumentTypeZA, 45);
 
             _sortType = "order by DT.DocumentTypeName asc, D.DocumentName asc";
-
+            
             Update();
         }
 
@@ -72,86 +73,75 @@ namespace NotarialOffice
             cmd += $" {_filtrationType}";
             cmd += $" {_sortType}";
 
-            try
+            _comments.Clear();
+            servicesPanel.Controls.Clear();
+            
+            var data = MainForm.GetData(cmd);
+
+            if (data.Rows.Count != 0)
             {
-                _comments.Clear();
-                servicesPanel.Controls.Clear();
-                var data = MainForm.GetData(cmd);
-
-                if (data.Rows.Count != 0)
+                infoLabel.Visible = false;
+                for (var i = 0; i < data.Rows.Count; i++)
                 {
-                    infoLabel.Visible = false;
-
-                    for (var i = 0; i < data.Rows.Count; i++)
+                    var pn = new Panel();
+                    pn.AutoSize = false;
+                    pn.BackColor = Color.FromArgb(210, 190, 157);
+                    pn.Size = data.Rows[i][5] != DBNull.Value ? new Size(725, 140) : new Size(725, 124);
+                    servicesPanel.Controls.Add(pn);
+                    SetRoundedShape(pn, 30);
+                    var lb2 = new Label();
+                    lb2.Height = 48;
+                    lb2.Dock = DockStyle.Top;
+                    lb2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+                    lb2.ForeColor = Color.FromArgb(90, 54, 32);
+                    lb2.Padding = new Padding(10, 5, 10, 0);
+                    lb2.Text = data.Rows[i][1].ToString();
+                    pn.Controls.Add(lb2);
+                    var lb = new Label();
+                    lb.Text = data.Rows[i][0].ToString();
+                    lb.Dock = DockStyle.Top;
+                    lb.Height = 38;
+                    lb.Width = 720;
+                    lb.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+                    lb.ForeColor = Color.FromArgb(90, 54, 32);
+                    lb.Padding = new Padding(10, 10, 10, 0);
+                    pn.Controls.Add(lb);
+                    var lb3 = new Label();
+                    lb3.Dock = DockStyle.Bottom;
+                    lb3.Height = 26;
+                    lb3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+                    lb3.ForeColor = Color.FromArgb(90, 54, 32);
+                    lb3.Padding = new Padding(10, 0, 10, 0);
+                    lb3.Text = @"Стоимость: " + data.Rows[i][2].ToString().Substring(0, data.Rows[i][2].ToString().Length - 3) + @"₽";
+                    if (data.Rows[i][3] != DBNull.Value)
+                        lb3.Text += @" + " + data.Rows[i][3].ToString().Substring(0, data.Rows[i][3].ToString().Length - 1) + @"%";
+                    if (data.Rows[i][4] != DBNull.Value)
+                        lb3.Text += @" + " + data.Rows[i][4].ToString().Substring(0, data.Rows[i][4].ToString().Length - 3) + @"₽/шт.";
+                    pn.Controls.Add(lb3);
+                    if (data.Rows[i][5] != DBNull.Value)
                     {
-                        var pn = new Panel();
-                        pn.AutoSize = false;
-                        pn.BackColor = Color.FromArgb(210, 190, 157);
-                        pn.Size = data.Rows[i][5] != DBNull.Value ? new Size(725, 140) : new Size(725, 124);
-                        servicesPanel.Controls.Add(pn);
-                        SetRoundedShape(pn, 30);
-
-                        var lb2 = new Label();
-                        lb2.Height = 48;
-                        lb2.Dock = DockStyle.Top;
-                        lb2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-                        lb2.ForeColor = Color.FromArgb(90, 54, 32);
-                        lb2.Padding = new Padding(10, 5, 10, 0);
-                        lb2.Text = data.Rows[i][1].ToString();
-                        pn.Controls.Add(lb2);
-
-                        var lb = new Label();
-                        lb.Text = data.Rows[i][0].ToString();
-                        lb.Dock = DockStyle.Top;
-                        lb.Height = 38;
-                        lb.Width = 720;
-                        lb.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-                        lb.ForeColor = Color.FromArgb(90, 54, 32);
-                        lb.Padding = new Padding(10, 10, 10, 0);
-                        pn.Controls.Add(lb);
-
-                        var lb3 = new Label();
-                        lb3.Dock = DockStyle.Bottom;
-                        lb3.Height = 26;
-                        lb3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-                        lb3.ForeColor = Color.FromArgb(90, 54, 32);
-                        lb3.Padding = new Padding(10, 0, 10, 0);
-                        lb3.Text = @"Стоимость: " + data.Rows[i][2].ToString().Substring(0, data.Rows[i][2].ToString().Length - 3) + @"₽";
-                        if (data.Rows[i][3] != DBNull.Value)
-                            lb3.Text += @" + " + data.Rows[i][3].ToString().Substring(0, data.Rows[i][3].ToString().Length - 1) + @"%";
-                        if (data.Rows[i][4] != DBNull.Value)
-                            lb3.Text += @" + " + data.Rows[i][4].ToString().Substring(0, data.Rows[i][4].ToString().Length - 3) + @"₽/шт.";
-                        pn.Controls.Add(lb3);
-
-                        if (data.Rows[i][5] != DBNull.Value)
-                        {
-                            var lb4 = new LinkLabel();
-                            lb4.Dock = DockStyle.Bottom;
-                            lb4.Height = 30;
-                            lb4.Name = "link_" + i;
-                            lb4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-                            lb4.LinkColor = Color.FromArgb(90, 54, 32);
-                            lb4.ForeColor = Color.FromArgb(90, 54, 32);
-                            lb4.Padding = new Padding(10, 0, 10, 10);
-                            lb4.LinkClicked += LinkClicked;
-                            lb4.Text = @"Смотреть подробнее...";
-                            pn.Controls.Add(lb4);
-                        }
-
-                        _comments.Add(data.Rows[i][5] == DBNull.Value ? "Ошибка" : data.Rows[i][5].ToString());
+                        var lb4 = new LinkLabel();
+                        lb4.Dock = DockStyle.Bottom;
+                        lb4.Height = 30;
+                        lb4.Name = "link_" + i;
+                        lb4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+                        lb4.LinkColor = Color.FromArgb(90, 54, 32);
+                        lb4.ForeColor = Color.FromArgb(90, 54, 32);
+                        lb4.Padding = new Padding(10, 0, 10, 10);
+                        lb4.LinkClicked += LinkClicked;
+                        lb4.Text = @"Смотреть подробнее...";
+                        pn.Controls.Add(lb4);
                     }
-
-                    servicesPanel.Visible = true;
+                    _comments.Add(data.Rows[i][5] == DBNull.Value ? "Ошибка" : data.Rows[i][5].ToString());
                 }
-                else
-                {
-                    infoLabel.Visible = true;
-                }
+                servicesPanel.Visible = true;
             }
-            catch
+            else
             {
-                // ignored
+                infoLabel.Visible = true;
             }
+
+
 
             sortPanel.Enabled = true;
             filtrationPanel.Enabled = true;

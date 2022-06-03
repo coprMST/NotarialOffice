@@ -31,17 +31,7 @@ namespace NotarialOffice
             }
             Update();
         }
-        
-        private void Connect()
-        {
-            using (var connection = new SqlConnection(_connect))
-            {
-                connection.Open();
-                _sqlDataAdapter = new SqlDataAdapter(Query, connection);
-                _sqlDataAdapter.Update(_dataSet);
-            }
-        }
-        
+
         private void setNullSeacher_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             seacher.Text = Empty;
@@ -52,7 +42,7 @@ namespace NotarialOffice
             Update();
         }
 
-        private void Update()
+        private new void Update()
         {
             using (var connection = new SqlConnection(_connect))
             {

@@ -111,6 +111,7 @@ namespace NotarialOffice
                     if (Regex.IsMatch(login, ".+[@].+[.].+"))
                     {
                         data = MainForm.GetData($"exec [dbo].[GetCustomer] null, '{login}', '{password}'");
+                        
                         if (data.Rows.Count == 0)
                         {
                             data = MainForm.GetData($"exec [dbo].[GetEmployee] null, '{login}', '{password}'");
@@ -165,6 +166,7 @@ namespace NotarialOffice
                     case "employee": MainForm.EmployeeId = data.Rows[0][1].ToString(); break;
                 }
 
+                MainForm.CreateUserFile(login, password);
                 GoToBackForm();
             }
         }

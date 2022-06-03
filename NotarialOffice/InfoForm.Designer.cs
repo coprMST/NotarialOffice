@@ -73,13 +73,14 @@ namespace NotarialOffice
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
-            this.label7.Location = new System.Drawing.Point(39, 575);
+            this.label7.Location = new System.Drawing.Point(54, 588);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(260, 25);
+            this.label7.Size = new System.Drawing.Size(224, 25);
             this.label7.TabIndex = 30;
-            this.label7.Text = "Директор Жмышенко В.А.";
+            this.label7.Text = "Директор Иванов Д.А.";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
@@ -149,9 +150,9 @@ namespace NotarialOffice
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.label1.Location = new System.Drawing.Point(28, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(739, 47);
+            this.label1.Size = new System.Drawing.Size(658, 47);
             this.label1.TabIndex = 24;
-            this.label1.Text = "Нотариальная контора Жмышенко В.А.";
+            this.label1.Text = "Нотариальная услуги Иванова Д.А.";
             // 
             // iconPictureBox3
             // 
@@ -207,7 +208,7 @@ namespace NotarialOffice
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            this.mainToolTip.SetToolTip(this.pictureBox1, "Фотография директора нотариальной конторы \r\nЖмышенко Валерия Альбертовича");
+            this.mainToolTip.SetToolTip(this.pictureBox1, "Фотография директора нотариальных услуг");
             // 
             // InfoForm
             // 

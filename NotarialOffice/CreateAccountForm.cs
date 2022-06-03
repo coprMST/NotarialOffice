@@ -163,8 +163,10 @@ namespace NotarialOffice
                             if (middleName != "NULL")
                                 MainForm.UserName += middleName.Substring(0, 1) + ".";
 
+                            MainForm.CreateUserFile(phone, topPassword);
+
                             Form mainForm = new MainForm();
-                            this.Close();
+                            Close();
                             mainForm.Show();
                         }
                         else

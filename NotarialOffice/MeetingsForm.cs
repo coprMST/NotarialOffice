@@ -38,16 +38,24 @@ namespace NotarialOffice
             if (!DateTime.TryParse(date, out var tempTime) )
             {
                 MessageBox.Show(@"Введите корректно дату встречи", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    
+                
+                dateBox.Text = Empty;
+                timeBox.Enabled = false;
+                commentBox.Enabled = false;
+                goToCreate.Enabled = false;
+            }
+            else if (tempTime < DateTime.Today)
+            {
+                MessageBox.Show(@"Для даты встречи введите как минимум завтрашний день", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     
                 dateBox.Text = Empty;
                 timeBox.Enabled = false;
                 commentBox.Enabled = false;
                 goToCreate.Enabled = false;
             }
-            else if (tempTime <= DateTime.Today)
+            else if (tempTime > DateTime.Today.AddDays(21))
             {
-                MessageBox.Show(@"Введите корректно дату встречи", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"Для даты встречи максимальной датой является 3 недели от текущего дня", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     
                 dateBox.Text = Empty;
                 timeBox.Enabled = false;
@@ -98,29 +106,32 @@ namespace NotarialOffice
             try
             { 
                 var data = MainForm.GetData($"exec [dbo].[AddNewMeeting] '{MainForm.CustomerId}', '{dateBox.Text + " " + timeBox.SelectedItem}', '{commentBox.Text}'");
-            
-                MessageBox.Show(@"Вы были успешно записаны на встречу с нотариусом", @"Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                var talonId = data.Rows[0][0].ToString();
                 var name = data.Rows[0][1] + " " +  data.Rows[0][2];
                 if (data.Rows[0][2] != DBNull.Value)
                     name += " " + data.Rows[0][3];
                 
                 var fieldValues = new Dictionary <string, string> {
-                    {"Номер записи", talonId},
-                    {"ФИО",  name},
-                    {"Дата 1",  dateBox.Text + " " + timeBox.SelectedItem},
-                    {"Дата 2", DateTime.Now.ToString("f")},
+                    {"Date", dateBox.Text},
+                    {"Time", timeBox.SelectedItem.ToString()},
+                    {"FioCustomer", name},
+                    {"DateTimeCreated", DateTime.Now.ToString("f")},
                 };
 
+                
+                var date = Convert.ToDateTime(dateBox.Text).ToString("dd-MM-yyyy");
+                var time = Convert.ToDateTime(timeBox.SelectedItem).ToString("hh-mm");
+                
                 var engine = new Engine();
-                engine.Merge(Application.StartupPath + @"\\template.docx", fieldValues, Application.StartupPath + $@"\\Talon_{talonId}.docx");
+                engine.Merge(Application.StartupPath + @"\\template.docx", fieldValues, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + $@"\\Talon_{date}_{time}.docx");
                 
                 dateBox.Text = "";
                 timeBox.Enabled = false;
                 timeBox.SelectedIndex = -1;
                 commentBox.Enabled = false;
                 goToCreate.Enabled = false;
+                
+                MessageBox.Show(@"Вы были успешно записаны на встречу с нотариусом", @"Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch
             {

@@ -98,9 +98,9 @@ namespace NotarialOffice
             this.logoLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (211)))), ((int) (((byte) (227)))), ((int) (((byte) (252)))));
             this.logoLabel.Location = new System.Drawing.Point(66, 9);
             this.logoLabel.Name = "logoLabel";
-            this.logoLabel.Size = new System.Drawing.Size(309, 32);
+            this.logoLabel.Size = new System.Drawing.Size(283, 32);
             this.logoLabel.TabIndex = 5;
-            this.logoLabel.Text = "Нотариальная контора";
+            this.logoLabel.Text = "Нотариальные услуги";
             this.logoLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.headerPanel_MouseDown);
             this.logoLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.headerPanel_MouseMove);
             // 
@@ -175,7 +175,7 @@ namespace NotarialOffice
             this.goToCreateAccount.DisabledLinkColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.goToCreateAccount.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle) ((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.goToCreateAccount.LinkColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
-            this.goToCreateAccount.Location = new System.Drawing.Point(190, 395);
+            this.goToCreateAccount.Location = new System.Drawing.Point(189, 584);
             this.goToCreateAccount.Name = "goToCreateAccount";
             this.goToCreateAccount.Size = new System.Drawing.Size(223, 21);
             this.goToCreateAccount.TabIndex = 4;
@@ -197,7 +197,7 @@ namespace NotarialOffice
             this.goToCheckPassword.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToCheckPassword.IconSize = 32;
             this.goToCheckPassword.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToCheckPassword.Location = new System.Drawing.Point(414, 357);
+            this.goToCheckPassword.Location = new System.Drawing.Point(450, 354);
             this.goToCheckPassword.Name = "goToCheckPassword";
             this.goToCheckPassword.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.goToCheckPassword.Size = new System.Drawing.Size(41, 35);
@@ -221,7 +221,7 @@ namespace NotarialOffice
             this.goToClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToClear.IconSize = 32;
             this.goToClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToClear.Location = new System.Drawing.Point(212, 505);
+            this.goToClear.Location = new System.Drawing.Point(212, 490);
             this.goToClear.Name = "goToClear";
             this.goToClear.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.goToClear.Size = new System.Drawing.Size(174, 60);
@@ -256,7 +256,7 @@ namespace NotarialOffice
             this.goToLogIn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.goToLogIn.IconSize = 32;
             this.goToLogIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.goToLogIn.Location = new System.Drawing.Point(180, 432);
+            this.goToLogIn.Location = new System.Drawing.Point(180, 420);
             this.goToLogIn.Name = "goToLogIn";
             this.goToLogIn.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.goToLogIn.Size = new System.Drawing.Size(243, 60);
@@ -282,10 +282,10 @@ namespace NotarialOffice
             // passwordBox
             // 
             this.passwordBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
-            this.passwordBox.Location = new System.Drawing.Point(186, 357);
+            this.passwordBox.Location = new System.Drawing.Point(150, 354);
             this.passwordBox.MaxLength = 64;
             this.passwordBox.Name = "passwordBox";
-            this.passwordBox.Size = new System.Drawing.Size(228, 35);
+            this.passwordBox.Size = new System.Drawing.Size(300, 35);
             this.passwordBox.TabIndex = 2;
             this.passwordBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mainToolTip.SetToolTip(this.passwordBox, "Поле для ввода пароля");
@@ -307,10 +307,10 @@ namespace NotarialOffice
             // 
             this.loginBox.BackColor = System.Drawing.SystemColors.Window;
             this.loginBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
-            this.loginBox.Location = new System.Drawing.Point(186, 281);
+            this.loginBox.Location = new System.Drawing.Point(150, 281);
             this.loginBox.MaxLength = 800;
             this.loginBox.Name = "loginBox";
-            this.loginBox.Size = new System.Drawing.Size(228, 35);
+            this.loginBox.Size = new System.Drawing.Size(300, 35);
             this.loginBox.TabIndex = 1;
             this.loginBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mainToolTip.SetToolTip(this.loginBox, "Поле для ввода номера телефона или электронной почты");

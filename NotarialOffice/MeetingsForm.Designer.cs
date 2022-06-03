@@ -39,6 +39,8 @@ namespace NotarialOffice
             this.dateBox = new System.Windows.Forms.MaskedTextBox();
             this.timeBox = new System.Windows.Forms.ComboBox();
             this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // goToCreate
@@ -124,12 +126,34 @@ namespace NotarialOffice
             this.timeBox.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
             this.timeBox.FormattingEnabled = true;
             this.timeBox.Items.AddRange(new object[] {"10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"});
-            this.timeBox.Location = new System.Drawing.Point(266, 206);
+            this.timeBox.Location = new System.Drawing.Point(266, 222);
             this.timeBox.Name = "timeBox";
             this.timeBox.Size = new System.Drawing.Size(213, 40);
             this.timeBox.TabIndex = 2;
             this.mainToolTip.SetToolTip(this.timeBox, "Выбрать время встречи");
             this.timeBox.SelectedIndexChanged += new System.EventHandler(this.timeBox_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.label1.Location = new System.Drawing.Point(344, 96);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 30);
+            this.label1.TabIndex = 107;
+            this.label1.Text = "Дата";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (90)))), ((int) (((byte) (54)))), ((int) (((byte) (32)))));
+            this.label2.Location = new System.Drawing.Point(335, 189);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 30);
+            this.label2.TabIndex = 108;
+            this.label2.Text = "Время";
             // 
             // MeetingsForm
             // 
@@ -137,6 +161,8 @@ namespace NotarialOffice
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (216)))), ((int) (((byte) (200)))), ((int) (((byte) (172)))));
             this.ClientSize = new System.Drawing.Size(800, 650);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.timeBox);
             this.Controls.Add(this.dateBox);
             this.Controls.Add(this.label8);
@@ -145,10 +171,13 @@ namespace NotarialOffice
             this.Controls.Add(this.goToCreate);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MeetingsForm";
-            this.Text = "MeetingsForm";
+            this.Text = "ыф";
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
 
         private System.Windows.Forms.ToolTip mainToolTip;
 
